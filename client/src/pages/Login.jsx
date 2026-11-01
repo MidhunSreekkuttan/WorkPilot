@@ -558,7 +558,7 @@ const Login = () => {
                                             text={state === 'login' ? "Login to Workspace Account" : "Create Workspace Account"}
                                             className="w-full h-11 text-base"
                                             icon={<FaArrowRight />}
-                                            iconHover="group-hover:translate-x-10"
+                                            iconHover="translate-x-5 group-hover:translate-x-20"
                                             position="right"
                                         />
                                     </div>

@@ -67,7 +67,7 @@ const Landing = () => {
               text="Get Started"
               className="text-sm md:text-base"
               icon={<FaArrowRight />}
-              iconHover="translate-x-1.5"
+              iconHover="group-hover:translate-x-1.5"
               position="right"
             />
           </div>
@@ -98,7 +98,7 @@ const Landing = () => {
                   text="Get Started"
                   className="text-base md:text-lg w-full h-13"
                   icon={<FaArrowRight />}
-                  iconHover="translate-x-2"
+                  iconHover="group-hover:translate-x-5"
                   position="right"
                 />
                 <SecondaryBtn

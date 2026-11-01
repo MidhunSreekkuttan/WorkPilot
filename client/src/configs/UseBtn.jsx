@@ -1,47 +1,22 @@
-export const PrimaryBtn = ({ text, className, iconHover, icon, position, ...prop }) => {
+function BaseBtn({ btnType = '', text, className = '', iconHover = '', icon = '', position = '', ...props }) {
     return (
         <button
-            {...prop}
-            className={`btn-primary group active:scale-95 transition-all duration-300 ${className}`}
+            {...props}
+            className={`inline-flex items-center justify-center gap-2 ${position === "right" ? "flex-row-reverse" : "flex-row"
+                } ${btnType} group active:scale-95 transition-all duration-300 ${className}`.trim()}
         >
-            {position === 'left' &&
-                <div className="flex items-center gap-2">
-                    <span className={`group-hover:${iconHover} transition-all duration-300`}>{icon}</span>
-                    {text}
-                </div>
-            }
-
-            {position === 'right' &&
-                <div className="flex items-center gap-2">
-                    {text}
-                    <span className={`group-hover:${iconHover} transition-all duration-300`}>{icon}</span>
-                </div>
-            }
-
+            {icon && (
+                <span className={`inline-flex transition-all duration-300 ${iconHover}`}>
+                    {icon}
+                </span>
+            )}
+            <span>{text}</span>
         </button>
     )
 }
 
-export const SecondaryBtn = ({ text, className, iconHover, icon, position, ...prop }) => {
-    return (
-        <button
-            {...prop}
-            className={`btn-secondary active:scale-95 transition-all duration-300 ${className}`}
-        >
-            {position === 'left' &&
-                <div className="flex items-center gap-2 group">
-                    <span className={`group-hover:${iconHover} transition-all duration-300`}>{icon}</span>
-                    {text}
-                </div>
-            }
+export const PrimaryBtn = (prop) => <BaseBtn btnType="btn-primary" {...prop} />
 
-            {position === 'right' &&
-                <div className="flex items-center gap-2 group">
-                    {text}
-                    <span className={`group-hover:${iconHover} transition-all duration-300`}>{icon}</span>
-                </div>
-            }
+export const SecondaryBtn = (prop) => <BaseBtn btnType='btn-secondary' {...prop} />
 
-        </button>
-    )
-}
+export const GhostBtn = (prop) => <BaseBtn btnType="btn-ghost" {...prop} />
