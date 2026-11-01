@@ -313,9 +313,9 @@ const Login = () => {
                                     </h2>
                                     <p className="text-body-md text-text-muted">
                                         {state === 'login' ? (
-                                            <p>Enter your corporate credentials to resume control plane telemetry.</p>
+                                            <span>Enter your corporate credentials to resume control plane telemetry.</span>
                                         ) : (
-                                            <p>Deploy your first cluster workspace in seconds.</p>
+                                            <span>Deploy your first cluster workspace in seconds.</span>
                                         )}
                                     </p>
                                 </div>

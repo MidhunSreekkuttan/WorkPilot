@@ -6,7 +6,7 @@ function BaseBtn({ btnType = '', text, className = '', iconHover = '', icon = ''
                 } ${btnType} group active:scale-95 transition-all duration-300 ${className}`.trim()}
         >
             {icon && (
-                <span className={`inline-flex transition-all duration-300 ${iconHover}`}>
+                <span className={`inline-flex transition-all duration-500 ${iconHover}`}>
                     {icon}
                 </span>
             )}
