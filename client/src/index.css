@@ -4,7 +4,9 @@
 /* ==========================================
    1. THEME VARIABLES (LIGHT & DARK)
    ========================================== */
-   
+
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
     :root {
         /* Core Slate & Accents - LIGHT THEME */
@@ -301,6 +303,19 @@
     }
 }
 
+@layer utilities {
+    .bg-grid-pattern {
+        background-size: 40px 40px;
+        background-image: linear-gradient(to right, #0000001a, transparent 1px),
+            linear-gradient(to bottom, #0000001a, transparent 1px);
+    }
+
+    .dark .bg-grid-pattern {
+        background-image: linear-gradient(to right, #ffffff1a, transparent 1px),
+            linear-gradient(to bottom, #ffffff1a, transparent 1px);
+    }
+}
+
 /* ==========================================
    4. TYPOGRAPHY UTILITIES
    ========================================== */
@@ -535,39 +550,22 @@
     }
 
     /* Status Badges */
-    .badge-status {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-        padding: 0.125rem 0.625rem;
-        border-radius: 9999px;
-        font-size: 12px;
-        font-weight: 500;
-    }
-
-    .badge-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 9999px;
-        background-color: currentColor;
-    }
-
     .badge-in-progress {
-        background-color: rgb(249 115 22 / 0.1);
-        color: #fb923c;
-        border: 1px solid rgb(249 115 22 / 0.2);
+        background-color: rgb(255 106 0 / 0.12);
+        color: var(--color-brand-orange);
+        border: 1px solid rgb(255 106 0 / 0.25);
     }
 
     .badge-completed {
-        background-color: rgb(16 185 129 / 0.1);
-        color: #34d399;
-        border: 1px solid rgb(16 185 129 / 0.2);
+        background-color: rgb(16 185 129 / 0.12);
+        color: var(--color-brand-emerald);
+        border: 1px solid rgb(16 185 129 / 0.25);
     }
 
     .badge-review {
-        background-color: rgb(14 165 233 / 0.1);
-        color: #38bdf8;
-        border: 1px solid rgb(14 165 233 / 0.2);
+        background-color: rgb(14 165 233 / 0.12);
+        color: var(--color-brand-cyan);
+        border: 1px solid rgb(14 165 233 / 0.25);
     }
 
     /* Checkboxes */
@@ -601,5 +599,69 @@
 
     .priority-bar-left {
         border-left: 3px solid var(--color-brand-orange);
+    }
+
+    /* Hero Floating Glass Panel (adapts to Light & Dark automatically) */
+    .glass-kinetic {
+        background-color: color-mix(in srgb, var(--color-panel) 85%, transparent);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--color-outline-variant);
+        box-shadow: var(--shadow-level-3);
+        border-radius: var(--radius-xl);
+    }
+
+    /* Orbital Rings for Hero Right Side */
+    .orbital-ring {
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        border-radius: 9999px;
+        border: 1px dashed color-mix(in srgb, var(--color-brand-orange) 30%, transparent);
+        pointer-events: none;
+        animation: spinSlow 35s linear infinite;
+    }
+
+    .orbital-ring-outer {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 9999px;
+        border: 1px solid color-mix(in srgb, var(--color-outline-variant) 45%, transparent);
+        pointer-events: none;
+        animation: spinSlow 50s linear infinite reverse;
+    }
+
+    .floating-card-a {
+        animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    .floating-card-b {
+        animation: floatSlow 7s ease-in-out infinite 1.5s;
+    }
+
+    .floating-card-c {
+        animation: floatSlow 5s ease-in-out infinite 0.7s;
+    }
+}
+
+@keyframes floatSlow {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spinSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
     }
 }
