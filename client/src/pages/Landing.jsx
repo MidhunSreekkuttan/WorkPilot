@@ -110,17 +110,20 @@ const Landing = () => {
               </div>
 
               {/* Social Proof / Avatars */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8 md:mt-12 pt-8 border-t border-outline-variant/50 w-full">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8 md:mt-12 pt-8 border-t
+                 border-outline-variant/50 w-full">
                 <div className="flex -space-x-2.5 overflow-hidden p-1">
                   {avatars.map((avatar) => (
                     <div
                       key={avatar.initials}
-                      className={`inline-flex h-9 w-9 rounded-full ring-2 ring-canvas bg-gradient-to-br ${avatar.gradient} text-white font-bold text-xs items-center justify-center border border-white/20`}
+                      className={`inline-flex h-9 w-9 rounded-full ring-2 ring-canvas bg-gradient-to-br ${avatar.gradient} 
+                        text-white font-bold text-xs items-center justify-center border border-white/20`}
                     >
                       {avatar.initials}
                     </div>
                   ))}
-                  <div className="inline-flex h-9 w-9 rounded-full ring-2 ring-canvas bg-brand-orange/15 text-brand-orange font-bold text-xs items-center justify-center border border-brand-orange/40">
+                  <div className="inline-flex h-9 w-9 rounded-full ring-2 ring-canvas bg-brand-orange/15 text-brand-orange 
+                    font-bold text-xs items-center justify-center border border-brand-orange/40">
                     10k+
                   </div>
                 </div>
@@ -149,13 +152,16 @@ const Landing = () => {
               {/* Orbital Rings & Center Glow */}
               <div className="orbital-ring" />
               <div className="orbital-ring-outer" />
-              <div className="absolute w-[340px] sm:w-[440px] h-[340px] sm:h-[440px] bg-gradient-to-tr from-brand-orange/20 to-brand-orange-light/5 rounded-full blur-[90px] pointer-events-none" />
+              <div className="absolute w-[340px] sm:w-[440px] h-[340px] sm:h-[440px] 
+                bg-gradient-to-tr from-brand-orange/20 to-brand-orange-light/5 rounded-full blur-[90px] pointer-events-none" />
 
               {/* 1. MAIN CARD: Project Overview Panel */}
-              <div className="floating-card-a absolute top-6 sm:top-10 left-0 sm:left-6 w-[310px] sm:w-[410px] glass-kinetic p-4 sm:p-5 z-20">
+              <div className="floating-card-a absolute top-6 sm:top-10 left-0 sm:left-6 w-[310px] sm:w-[410px] glass-kinetic 
+                p-4 sm:p-5 z-20">
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-outline-variant/40">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-brand-orange/15 border border-brand-orange/40 flex items-center justify-center text-brand-orange font-bold text-sm">
+                    <div className="w-8 h-8 rounded-md bg-brand-orange/15 border border-brand-orange/40 flex items-center
+                       justify-center text-brand-orange font-bold text-sm">
                       WP
                     </div>
                     <div>
@@ -194,9 +200,11 @@ const Landing = () => {
 
                 {/* Mini Tasks Inside Card */}
                 <div className="space-y-2.5">
-                  <div className="flex items-center justify-between p-2.5 rounded-DEFAULT bg-card hover:bg-card-hover border border-outline-variant/40 transition-colors">
+                  <div className="flex items-center justify-between p-2.5 rounded-DEFAULT bg-card hover:bg-card-hover border 
+                    border-outline-variant/40 transition-colors">
                     <div className="flex items-center gap-2.5">
-                      <span className="w-4 h-4 rounded-sm bg-brand-emerald/20 border border-brand-emerald/40 flex items-center justify-center text-brand-emerald text-[10px]">
+                      <span className="w-4 h-4 rounded-sm bg-brand-emerald/20 border border-brand-emerald/40 flex items-center
+                         justify-center text-brand-emerald text-[10px]">
                         ✓
                       </span>
                       <span className="text-xs font-medium text-text-main">
@@ -208,9 +216,11 @@ const Landing = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between p-2.5 rounded-DEFAULT bg-card hover:bg-card-hover border border-outline-variant/40 transition-colors">
+                  <div className="flex items-center justify-between p-2.5 rounded-DEFAULT bg-card hover:bg-card-hover border 
+                    border-outline-variant/40 transition-colors">
                     <div className="flex items-center gap-2.5">
-                      <span className="w-4 h-4 rounded-sm bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center text-brand-orange text-[10px]">
+                      <span className="w-4 h-4 rounded-sm bg-brand-orange/20 border border-brand-orange/40 flex items-center
+                         justify-center text-brand-orange text-[10px]">
                         ●
                       </span>
                       <span className="text-xs font-medium text-text-main">
@@ -225,7 +235,8 @@ const Landing = () => {
               </div>
 
               {/* 2. SECONDARY OVERLAY CARD: Task List Detail Card */}
-              <div className="floating-card-b absolute bottom-8 sm:bottom-12 right-0 sm:right-4 w-[290px] sm:w-[350px] surface-level-3 p-4 sm:p-5 z-30">
+              <div className="floating-card-b absolute bottom-8 sm:bottom-12 right-0 sm:right-4 w-[290px] sm:w-[350px] 
+                surface-level-3 p-4 sm:p-5 z-30">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-0.5 rounded-sm text-label-caps bg-error/15 text-error border border-error/25">
@@ -236,10 +247,12 @@ const Landing = () => {
                     </span>
                   </div>
                   <div className="flex -space-x-1.5">
-                    <div className="w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-[9px] font-bold text-text-main">
+                    <div className="w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant flex
+                       items-center justify-center text-[9px] font-bold text-text-main">
                       MC
                     </div>
-                    <div className="w-6 h-6 rounded-full bg-brand-orange border border-panel flex items-center justify-center text-[9px] font-bold text-white">
+                    <div className="w-6 h-6 rounded-full bg-brand-orange border border-panel flex items-center justify-center 
+                      text-[9px] font-bold text-white">
                       SJ
                     </div>
                   </div>
@@ -249,7 +262,8 @@ const Landing = () => {
                   Refactor Transaction History virtualized list
                 </h5>
 
-                <div className="flex items-center justify-between text-xs text-text-muted bg-panel/80 px-3 py-2 rounded-DEFAULT border border-outline-variant/40 mb-3">
+                <div className="flex items-center justify-between text-xs text-text-muted bg-panel/80 px-3 py-2 rounded-DEFAULT 
+                  border border-outline-variant/40 mb-3">
                   <div className="flex items-center gap-2">
                     <svg
                       className="w-4 h-4 text-brand-orange"
@@ -293,8 +307,10 @@ const Landing = () => {
               </div>
 
               {/* 3. FLOATING BADGE 1: Green Completion Indicator */}
-              <div className="floating-card-c absolute top-14 sm:top-20 right-2 md:right-16 glass-kinetic rounded-lg px-3.5 py-2.5 border-brand-emerald/40 flex items-center gap-3 z-40">
-                <div className="w-7 h-7 rounded-DEFAULT bg-brand-emerald/15 border border-brand-emerald/40 flex items-center justify-center text-brand-emerald">
+              <div className="floating-card-c absolute top-14 sm:top-20 right-2 md:right-16 glass-kinetic rounded-lg px-3.5 
+                  py-2.5 border-brand-emerald/40 flex items-center gap-3 z-40">
+                <div className="w-7 h-7 rounded-DEFAULT bg-brand-emerald/15 border border-brand-emerald/40 flex items-center
+                   justify-center text-brand-emerald">
                   <svg
                     className="w-4 h-4"
                     fill="none"
@@ -320,8 +336,10 @@ const Landing = () => {
               </div>
 
               {/* 4. FLOATING BADGE 2: Purple Team Collaboration Icon */}
-              <div className="floating-card-b absolute bottom-28 sm:bottom-32 left-0 sm:-left-3 glass-kinetic rounded-lg px-3.5 py-2.5 border-purple-500/40 flex items-center gap-3 z-40">
-                <div className="w-8 h-8 rounded-DEFAULT bg-purple-500/15 border border-purple-500/40 flex items-center justify-center text-purple-600 dark:text-purple-400">
+              <div className="floating-card-b absolute bottom-28 sm:bottom-32 left-0 sm:-left-3 glass-kinetic rounded-lg px-3.5
+                   py-2.5 border-purple-500/40 flex items-center gap-3 z-40">
+                <div className="w-8 h-8 rounded-DEFAULT bg-purple-500/15 border border-purple-500/40 flex items-center 
+                    justify-center text-purple-600 dark:text-purple-400">
                   <svg
                     className="w-4 h-4"
                     fill="currentColor"
@@ -341,7 +359,8 @@ const Landing = () => {
               </div>
 
               {/* 5. FLOATING BADGE 3: Orange Telemetry Pill */}
-              <div className="floating-card-a absolute bottom-0 sm:bottom-4 left-1/3 -translate-x-1/2 glass-kinetic rounded-full px-4 py-1.5 shadow-orange-glow border-brand-orange/40 flex items-center gap-2 z-40 whitespace-nowrap">
+              <div className="floating-card-a absolute bottom-0 sm:bottom-4 left-1/3 -translate-x-1/2 glass-kinetic rounded-full
+                 px-4 py-1.5 shadow-orange-glow border-brand-orange/40 flex items-center gap-2 z-40 whitespace-nowrap">
                 <span className="w-2 h-2 rounded-full bg-brand-orange animate-ping" />
                 <span className="text-[11px] font-bold text-text-main">
                   Live Cluster Latency:{" "}
