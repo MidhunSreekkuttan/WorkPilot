@@ -1,6 +1,36 @@
+import React from "react";
+import { useState } from "react";
 import { FaKey, FaLink, FaSpinner, FaTimes } from "react-icons/fa";
 
-const JoinWorkSpace = ({ setActiveModal, handleJoinSubmit, setInviteCode, joinStatus, inviteCode, handlePasteCode, }) => {
+const JoinWorkSpace = ({ setActiveModal, }) => {
+
+    // Join Workspace Form State
+    const [inviteCode, setInviteCode] = useState("");
+    const [joinStatus, setJoinStatus] = useState("idle"); // "idle" | "loading" | "connecting"
+
+    const handleJoinSubmit = (e) => {
+        e.preventDefault();
+        if (joinStatus !== "idle") return;
+
+        setJoinStatus("loading");
+        setTimeout(() => {
+            setJoinStatus("connecting");
+            setTimeout(() => {
+                setActiveModal(null);
+                setJoinStatus("idle");
+            }, 600);
+        }, 1000);
+    };
+
+    const handlePasteCode = async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            if (text) setInviteCode(text);
+        } catch {
+            // Fallback if clipboard permissions are denied
+        }
+    };
+
     return (
         <div
             onClick={(e) => {
@@ -126,4 +156,4 @@ const JoinWorkSpace = ({ setActiveModal, handleJoinSubmit, setInviteCode, joinSt
     );
 };
 
-export default JoinWorkSpace;
+export default React.memo(JoinWorkSpace);

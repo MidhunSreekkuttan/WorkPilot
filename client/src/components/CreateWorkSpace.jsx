@@ -1,22 +1,56 @@
+import React from "react";
+import { useState } from "react";
 import { FaBuilding, FaLink, FaSpinner, FaTimes } from "react-icons/fa";
 
-const CreateWorkSpace = ({
-    createStatus,
-    handleCreateSubmit,
-    paletteColors,
-    selectedColor,
-    setSelectedColor,
-    selectedTeamSize,
-    setSelectedTeamSize,
-    setActiveModal,
-    setWorkspaceDesc,
-    setWorkspaceName,
-    slugPreview,
-    teamSizes,
-    workspaceDesc,
-    workspaceName,
-    getInitials,
-}) => {
+const paletteColors = [
+    { id: "orange", hex: "#ff6a00", bgClass: "bg-primary-container" },
+    { id: "cyan", hex: "#00a6e0", bgClass: "bg-secondary-container" },
+    { id: "emerald", hex: "#00ae78", bgClass: "bg-tertiary-container" },
+    { id: "error", hex: "#93000a", bgClass: "bg-error-container" },
+];
+
+const teamSizes = ["Just me", "2 - 10", "11 - 50", "50+"];
+
+const CreateWorkSpace = ({ setActiveModal }) => {
+
+    // Create Workspace Form State
+    const [workspaceName, setWorkspaceName] = useState("");
+    const [selectedColor, setSelectedColor] = useState("#ff6a00");
+    const [createStatus, setCreateStatus] = useState("idle"); // "idle" | "loading" | "ready"
+    const [selectedTeamSize, setSelectedTeamSize] = useState("Just me");
+    const [workspaceDesc, setWorkspaceDesc] = useState("");
+
+    // Derived Slug & Avatar Initials
+    const trimmedName = workspaceName.trim().toLowerCase();
+    const slugPreview = trimmedName
+        ? trimmedName.replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+        : "new-workspace";
+
+    const handleCreateSubmit = (e) => {
+        e.preventDefault();
+        if (createStatus !== "idle") return;
+
+        setCreateStatus("loading");
+        setTimeout(() => {
+            setCreateStatus("ready");
+            setTimeout(() => {
+                setActiveModal(null);
+                setCreateStatus("idle");
+            }, 600);
+        }, 1200);
+    };
+
+    const getInitials = (name) => {
+        const parts = name.trim().split(" ").filter(Boolean);
+        if (parts.length >= 2) {
+            return (parts[0][0] + parts[1][0]).toUpperCase();
+        }
+        if (parts.length === 1 && parts[0].length > 0) {
+            return parts[0].substring(0, 2).toUpperCase();
+        }
+        return "WP";
+    };
+
     return (
         <div
             onClick={(e) => {
@@ -192,4 +226,4 @@ const CreateWorkSpace = ({
     );
 };
 
-export default CreateWorkSpace;
+export default React.memo(CreateWorkSpace);
