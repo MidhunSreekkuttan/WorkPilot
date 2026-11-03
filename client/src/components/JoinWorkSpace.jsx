@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaKey, FaLink, FaSpinner, FaTimes } from "react-icons/fa";
+import { GhostBtn, SecondaryBtn } from "../configs/UseBtn";
 
 const JoinWorkSpace = ({ setActiveModal, }) => {
 
@@ -126,29 +127,25 @@ const JoinWorkSpace = ({ setActiveModal, }) => {
 
                     {/* Modal Footer Actions */}
                     <div className="pt-4 mt-2 flex items-center justify-end gap-2 border-t border-outline-variant/20">
-                        <button
+
+                        <GhostBtn
                             type="button"
                             onClick={() => setActiveModal(null)}
-                            className="px-4 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-label-lg transition-colors cursor-pointer"
-                        >
-                            Cancel
-                        </button>
-                        <button
+                            className="px-4 py-2.5 rounded-lg"
+                            text="Cancel"
+                        />
+                        <SecondaryBtn
                             type="submit"
                             disabled={joinStatus !== "idle"}
-                            className="px-6 py-2.5 rounded-lg bg-secondary text-on-secondary text-headline-sm shadow-md hover:brightness-110 active:brightness-95 flex items-center gap-2 cursor-pointer disabled:opacity-70"
-                        >
-                            {joinStatus === "loading" && (
-                                <FaSpinner className="text-base animate-spin" />
-                            )}
-                            <span>
-                                {joinStatus === "loading"
-                                    ? "Authenticating Token..."
-                                    : joinStatus === "connecting"
-                                        ? "Connecting..."
-                                        : "Connect & Enter"}
-                            </span>
-                        </button>
+                            className="px-6 py-3 rounded-lg gap-2 shadow-md disabled:cursor-not-allowed disabled:opacity-70"
+                            icon={joinStatus === "loading" && <FaSpinner className="text-base animate-spin" />}
+                            text={
+                                joinStatus === "loading" ? "Authenticating Token..." : joinStatus === "connecting"
+                                    ? "Connecting..."
+                                    : "Connect & Enter"
+                            }
+                        />
+
                     </div>
                 </form>
             </div>

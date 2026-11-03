@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaBuilding, FaLink, FaSpinner, FaTimes } from "react-icons/fa";
+import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
 
 const paletteColors = [
     { id: "orange", hex: "#ff6a00", bgClass: "bg-primary-container" },
@@ -65,7 +66,7 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                 {/* Modal Header */}
                 <div className="px-6 pt-6 pb-4 flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-primary to-primary-container flex items-center justify-center text-on-primary-container shadow-md">
+                        <div className="w-10 h-10 rounded-lg bg-linear-to-b from-[#FF7A00] to-[#FF5500] flex items-center justify-center text-on-primary-container shadow-md">
                             <FaBuilding className="text-lg" />
                         </div>
                         <div>
@@ -196,29 +197,25 @@ const CreateWorkSpace = ({ setActiveModal }) => {
 
                     {/* Modal Footer Actions */}
                     <div className="pt-4 mt-2 flex items-center justify-end gap-2 border-t border-outline-variant/20">
-                        <button
+
+                        <SecondaryBtn
                             type="button"
                             onClick={() => setActiveModal(null)}
-                            className="px-4 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-label-lg transition-colors cursor-pointer"
-                        >
-                            Cancel
-                        </button>
-                        <button
+                            text="Cancel"
+                            className="px-4 py-2.5 rounded-lg"
+                        />
+                        <PrimaryBtn
                             type="submit"
                             disabled={createStatus !== "idle"}
-                            className="px-6 py-2.5 rounded-lg bg-gradient-to-b from-primary to-primary-container text-on-primary-container text-headline-sm shadow-md hover:brightness-110 active:brightness-95 flex items-center gap-2 cursor-pointer disabled:opacity-70"
-                        >
-                            {createStatus === "loading" && (
-                                <FaSpinner className="text-base animate-spin" />
-                            )}
-                            <span>
-                                {createStatus === "loading"
-                                    ? "Provisioning..."
-                                    : createStatus === "ready"
-                                        ? "Workspace Ready!"
-                                        : "Create Workspace"}
-                            </span>
-                        </button>
+                            className="px-6 py-3 rounded-lg gap-2 shadow-md disabled:cursor-not-allowed disabled:opacity-70"
+                            icon={createStatus === "loading" && <FaSpinner className="text-base animate-spin" />}
+                            text={
+                                createStatus === "loading" ? "Provisioning..." : createStatus === "ready"
+                                    ? "Workspace Ready!"
+                                    : "Create Workspace"
+                            }
+                        />
+
                     </div>
                 </form>
             </div>

@@ -150,9 +150,8 @@ const recentActivities = [
 ];
 
 const Dashboard = () => {
-    const [activeModal, setActiveModal] = useState(null); // null | "create" | "join"
+    const [activeModal, setActiveModal] = useState(null);
 
-    // Handle Escape key and modal scroll lock
     useEffect(() => {
         if (activeModal) {
             document.body.style.overflow = "hidden";
@@ -175,25 +174,17 @@ const Dashboard = () => {
 
     return (
         <div className="min-h-screen surface-level-0 text-text-main flex selection:bg-brand-orange selection:text-white">
-            {/* ==========================================
-                MAIN WORKSPACE AREA
-               ========================================== */}
             <div className="flex-1 flex flex-col min-w-0">
-                {/* Main Content Grid */}
                 <main className="flex-1 px-4 sm:px-8 py-6 max-w-[1440px] w-full mx-auto">
                     <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
-                        {/* ==========================================
-                            LEFT / CENTER COLUMN (8 COLS)
-                           ========================================== */}
+                        {/* LEFT / CENTER COLUMN */}
                         <div className="xl:col-span-8 flex flex-col gap-7">
-                            {/* 1. HERO BANNER */}
+                            {/* HERO BANNER */}
                             <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container/40 via-panel to-secondary-container/30 dark:from-surface-container-high dark:via-surface-container dark:to-surface-container-lowest border border-outline-variant/40 p-6 sm:p-8 shadow-level-2">
-                                {/* Decorative Soft Wave & Orbs */}
                                 <div className="absolute -top-20 -right-16 w-72 h-72 rounded-full bg-brand-orange/15 blur-3xl pointer-events-none" />
                                 <div className="absolute -bottom-20 right-1/4 w-60 h-60 rounded-full bg-brand-cyan/15 blur-3xl pointer-events-none" />
 
                                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                                    {/* Hero Left Copy & CTAs */}
                                     <div className="lg:col-span-7 flex flex-col items-start">
                                         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-panel/80 dark:bg-surface-container-highest/80 border border-outline-variant/40 shadow-xs mb-4">
                                             <span className="text-brand-orange text-xs">✦</span>
@@ -233,7 +224,7 @@ const Dashboard = () => {
                                                 text="Create Workspace"
                                                 icon={<FaPlus className="text-xs" />}
                                                 position="left"
-                                                className="px-5 py-3 rounded-full text-label-lg"
+                                                className="px-5 py-3 rounded-lg text-label-lg"
                                             />
                                             <SecondaryBtn
                                                 type="button"
@@ -241,19 +232,18 @@ const Dashboard = () => {
                                                 text="Join Workspace"
                                                 icon={<FaUsers className="text-sm text-brand-orange" />}
                                                 position="left"
-                                                className="px-5 py-3 rounded-full text-label-lg bg-panel/90"
+                                                className="px-5 py-3 rounded-lg text-label-lg bg-panel/90"
                                             />
                                         </div>
                                     </div>
 
-                                    {/* Hero Right 3D Visual Illustration (Matches image_e90b86.png) */}
                                     <div className="lg:col-span-5">
                                         <Hero3DIllustration />
                                     </div>
                                 </div>
                             </section>
 
-                            {/* 2. YOUR WORKSPACES SECTION */}
+                            {/* YOUR WORKSPACES SECTION */}
                             <section className="flex flex-col gap-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2.5">
@@ -271,7 +261,6 @@ const Dashboard = () => {
                                     </button>
                                 </div>
 
-                                {/* 2x2 Workspaces Grid */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     {workspaces.map((ws) => {
                                         const Icon = ws.icon;
@@ -280,7 +269,6 @@ const Dashboard = () => {
                                                 key={ws.id}
                                                 className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 card-kinetic-interactive flex flex-col justify-between gap-5"
                                             >
-                                                {/* Top Row: Icon, Name, Menu */}
                                                 <div className="flex items-start justify-between gap-3">
                                                     <div className="flex items-start gap-3.5">
                                                         <div
@@ -296,7 +284,6 @@ const Dashboard = () => {
                                                                 {ws.subtitle}
                                                             </p>
 
-                                                            {/* Member Photo Avatars Stack */}
                                                             <div className="flex items-center -space-x-2 mt-3">
                                                                 {ws.members.map((avatarUrl, idx) => (
                                                                     <img
@@ -322,7 +309,6 @@ const Dashboard = () => {
                                                     </button>
                                                 </div>
 
-                                                {/* Bottom Row: Overall Progress */}
                                                 <div className="flex flex-col gap-2">
                                                     <div className="flex items-center justify-between text-body-sm">
                                                         <span className="text-text-muted font-medium">
@@ -343,7 +329,6 @@ const Dashboard = () => {
                                         );
                                     })}
 
-                                    {/* 4th Card: Dashed Create or Join CTA Card */}
                                     <div className="relative overflow-hidden rounded-2xl p-5 border-2 border-dashed border-outline-variant/60 bg-panel/50 dark:bg-surface-container-low/50 hover:border-brand-orange/60 transition-colors flex flex-col items-center justify-center text-center gap-3 min-h-[210px]">
                                         <button
                                             type="button"
@@ -382,11 +367,9 @@ const Dashboard = () => {
                             </section>
                         </div>
 
-                        {/* ==========================================
-                            RIGHT COLUMN (4 COLS)
-                           ========================================== */}
+                        {/* RIGHT COLUMN */}
                         <div className="xl:col-span-4 flex flex-col gap-6">
-                            {/* 1. QUICK OVERVIEW */}
+                            {/* QUICK OVERVIEW */}
                             <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-4">
                                 <div className="inline-flex items-center gap-2 self-start px-3 py-1.5 rounded-full bg-card dark:bg-surface-container-high border border-outline-variant/30">
                                     <FaChartBar className="text-brand-orange text-xs" />
@@ -422,7 +405,7 @@ const Dashboard = () => {
                                 </div>
                             </section>
 
-                            {/* 2. RECENT ACTIVITY */}
+                            {/* RECENT ACTIVITY */}
                             <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
@@ -441,7 +424,6 @@ const Dashboard = () => {
                                 </div>
 
                                 <div className="relative flex flex-col gap-4 pl-3">
-                                    {/* Vertical Timeline Line */}
                                     <div className="absolute left-[15px] top-3 bottom-3 w-[1.5px] bg-outline-variant/40" />
 
                                     {recentActivities.map((item) => {
@@ -452,12 +434,10 @@ const Dashboard = () => {
                                                 className="relative flex items-start justify-between gap-2.5"
                                             >
                                                 <div className="flex items-start gap-3 min-w-0">
-                                                    {/* Timeline Dot */}
                                                     <span
                                                         className={`relative z-10 mt-2.5 w-2 h-2 rounded-full shrink-0 ring-4 ring-panel dark:ring-surface-container ${item.dotColor}`}
                                                     />
 
-                                                    {/* Avatar Photo or Action Icon */}
                                                     {item.avatarUrl ? (
                                                         <img
                                                             src={item.avatarUrl}
@@ -472,7 +452,6 @@ const Dashboard = () => {
                                                         </div>
                                                     )}
 
-                                                    {/* Activity Description */}
                                                     <p className="text-body-sm text-text-muted leading-snug">
                                                         <strong className="text-text-main font-semibold">
                                                             {item.user}
@@ -493,13 +472,12 @@ const Dashboard = () => {
                                 </div>
                             </section>
 
-                            {/* 3. PROMO CTA BANNER (Matches image_e908c1.png) */}
-                            <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0D1025] via-[#17183B] to-[#251E54] text-white p-6 min-h-[178px] shadow-level-3 border border-white/10 flex items-center">
-                                {/* Top-Left Subtle Paper-Plane Watermark */}
+                            {/* 3. PROMO CTA BANNER (Adaptive Light & Dark Theme) */}
+                            <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-100/90 via-purple-100/60 to-blue-100/90 dark:from-[#0D1025] dark:via-[#17183B] dark:to-[#251E54] text-text-main dark:text-white p-6 min-h-[178px] shadow-level-3 border border-outline-variant/30 dark:border-white/10 flex items-center">
                                 <svg
                                     viewBox="0 0 36 36"
                                     fill="none"
-                                    className="w-6 h-6 text-indigo-400/25 mb-2"
+                                    className="w-6 h-6 text-indigo-500/30 dark:text-indigo-400/25 mb-2"
                                     aria-hidden="true"
                                 >
                                     <path
@@ -508,29 +486,27 @@ const Dashboard = () => {
                                     />
                                 </svg>
 
-                                {/* Left Text & CTA Button */}
                                 <div className="relative z-10 flex flex-col items-start max-w-[68%]">
-                                    <div className="w-6 h-6 mb-2 rounded-md flex items-center justify-center text-indigo-400/40">
+                                    <div className="w-6 h-6 mb-2 rounded-md flex items-center justify-center text-indigo-600/60 dark:text-indigo-400/40">
                                         <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                                             <path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-headline-sm text-white font-bold tracking-tight">
+                                    <h3 className="text-headline-sm text-text-main dark:text-white font-bold tracking-tight">
                                         Work better together!
                                     </h3>
-                                    <p className="text-body-sm text-slate-300 mt-1">
+                                    <p className="text-body-sm text-text-muted dark:text-slate-300 mt-1">
                                         Build, plan and grow with WorkPilot.
                                     </p>
                                     <button
                                         type="button"
-                                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#12132E] text-label-md font-bold shadow-md hover:bg-slate-100 active:scale-95 transition-all cursor-pointer"
+                                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white dark:bg-white dark:text-[#12132E] text-label-md font-bold shadow-md hover:opacity-90 active:scale-95 transition-all cursor-pointer"
                                     >
                                         <span>Explore Features</span>
                                         <FaArrowRight className="text-[10px]" />
                                     </button>
                                 </div>
 
-                                {/* Right 3D Rocket + Clouds Illustration */}
                                 <RocketPromo3DIllustration />
                             </section>
                         </div>
@@ -538,9 +514,7 @@ const Dashboard = () => {
                 </main>
             </div>
 
-            {/* ==========================================
-                WORKSPACE MODALS (FROM YOUR COMPONENTS)
-               ========================================== */}
+            {/* WORKSPACE MODALS */}
             {activeModal === "create" && (
                 <CreateWorkSpace setActiveModal={setActiveModal} />
             )}
