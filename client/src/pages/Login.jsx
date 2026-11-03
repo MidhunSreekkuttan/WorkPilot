@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
     FaArrowRight,
     FaBolt,
-    FaBuilding,
     FaCheck,
     FaCheckCircle,
     FaChartLine,

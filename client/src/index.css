@@ -314,6 +314,16 @@
         background-image: linear-gradient(to right, #ffffff1a, transparent 1px),
             linear-gradient(to bottom, #ffffff1a, transparent 1px);
     }
+
+    .rocket-flame-outer {
+        transform-origin: 0px 0px;
+        animation: thrusterFlickerOuter 0.18s ease-in-out infinite alternate;
+    }
+
+    .rocket-flame-inner {
+        transform-origin: 0px 0px;
+        animation: thrusterFlickerInner 0.12s ease-in-out infinite alternate;
+    }
 }
 
 /* ==========================================
@@ -663,5 +673,34 @@
 
     to {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes thrusterFlickerOuter {
+    0% {
+        transform: scaleX(0.92) scaleY(0.88);
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: scaleX(1.04) scaleY(1.08);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scaleX(0.96) scaleY(1.18);
+        opacity: 0.9;
+    }
+}
+
+@keyframes thrusterFlickerInner {
+    0% {
+        transform: scaleX(0.88) scaleY(0.82);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scaleX(1.08) scaleY(1.22);
+        opacity: 1;
     }
 }
