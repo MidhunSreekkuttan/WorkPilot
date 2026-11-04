@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FaBuilding, FaLink, FaSpinner, FaTimes } from "react-icons/fa";
 import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
+import useForm from "../coustom-hooks/UseForm";
 
 const paletteColors = [
     { id: "orange", hex: "#ff6a00", bgClass: "bg-primary-container" },
@@ -15,14 +16,17 @@ const teamSizes = ["Just me", "2 - 10", "11 - 50", "50+"];
 const CreateWorkSpace = ({ setActiveModal }) => {
 
     // Create Workspace Form State
-    const [workspaceName, setWorkspaceName] = useState("");
     const [selectedColor, setSelectedColor] = useState("#ff6a00");
     const [createStatus, setCreateStatus] = useState("idle"); // "idle" | "loading" | "ready"
     const [selectedTeamSize, setSelectedTeamSize] = useState("Just me");
-    const [workspaceDesc, setWorkspaceDesc] = useState("");
 
+    const { values, handleChange } = useForm({
+        workspaceName: "",
+        workspaceDesc: ""
+    })
+    
     // Derived Slug & Avatar Initials
-    const trimmedName = workspaceName.trim().toLowerCase();
+    const trimmedName = values.workspaceName.trim().toLowerCase();
     const slugPreview = trimmedName
         ? trimmedName.replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
         : "new-workspace";
@@ -110,8 +114,9 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                             id="input-workspace-name"
                             type="text"
                             required
-                            value={workspaceName}
-                            onChange={(e) => setWorkspaceName(e.target.value)}
+                            name="workspaceName"
+                            value={values.workspaceName}
+                            onChange={handleChange}
                             placeholder="e.g. Acme Engineering or Core Infrastructure"
                             className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface text-body-md border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-primary-container shadow-inner"
                         />
@@ -138,8 +143,9 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                         <textarea
                             id="input-workspace-desc"
                             rows={2}
-                            value={workspaceDesc}
-                            onChange={(e) => setWorkspaceDesc(e.target.value)}
+                            name="workspaceDesc"
+                            value={values.workspaceDesc}
+                            onChange={handleChange}
                             placeholder="Briefly describe the purpose of this workspace..."
                             className="w-full px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface text-body-md border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-primary-container resize-none shadow-inner"
                         />
@@ -155,7 +161,7 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                                 style={{ backgroundColor: selectedColor }}
                                 className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white text-headline-sm transition-colors"
                             >
-                                {getInitials(workspaceName)}
+                                {getInitials(values.workspaceName)}
                             </div>
                             <div className="flex items-center gap-2">
                                 {paletteColors.map((item) => (

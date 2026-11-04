@@ -1,3 +1,5 @@
+import React from "react"
+
 function BaseBtn({ btnType = '', text, className = '', iconHover = '', icon = '', position = '', ...props }) {
     return (
         <button
@@ -15,8 +17,8 @@ function BaseBtn({ btnType = '', text, className = '', iconHover = '', icon = ''
     )
 }
 
-export const PrimaryBtn = (prop) => <BaseBtn btnType="btn-primary" {...prop} />
+export const PrimaryBtn = React.memo((prop) => <BaseBtn btnType="btn-primary" {...prop} />)
 
-export const SecondaryBtn = (prop) => <BaseBtn btnType='btn-secondary' {...prop} />
+export const SecondaryBtn = React.memo((prop) => <BaseBtn btnType='btn-secondary' {...prop} />)
 
-export const GhostBtn = (prop) => <BaseBtn btnType="btn-ghost" {...prop} />
+export const GhostBtn = React.memo((prop) => <BaseBtn btnType="btn-ghost" {...prop} />)

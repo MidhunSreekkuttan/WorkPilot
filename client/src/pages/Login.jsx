@@ -14,6 +14,7 @@ import {
     FaUser,
 } from "react-icons/fa";
 import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
+import useForm from "../coustom-hooks/UseForm";
 
 const avatars = [
     { initials: "SJ", gradient: "from-indigo-500 to-purple-600" },
@@ -66,18 +67,20 @@ const GoogleIcon = () => (
 );
 
 const Login = () => {
-    const [formData, setFormData] = useState({
+
+    const { values, handleChange } = useForm({
         fullName: "",
         email: "",
         password: "",
         terms: false,
         telemetryUpdates: true,
-    });
+    })
+
     const [showPassword, setShowPassword] = useState(false);
     const [state, setState] = useState('login')
 
     // Password validation & strength calculation
-    const password = formData.password;
+    const password = values.password;
     const hasLength = password.length >= 8;
     const hasCase = /[A-Z]/.test(password) && /[a-z]/.test(password);
     const hasSymbolOrNum =
@@ -116,14 +119,6 @@ const Login = () => {
             barClass: "bg-brand-emerald",
         },
     }[score];
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: type === "checkbox" ? checked : value,
-        }));
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -372,7 +367,7 @@ const Login = () => {
                                                     name="fullName"
                                                     type="text"
                                                     required
-                                                    value={formData.fullName}
+                                                    value={values.fullName}
                                                     onChange={handleChange}
                                                     placeholder="Sarah Jenkins"
                                                     className="input-kinetic pl-10"
@@ -398,7 +393,7 @@ const Login = () => {
                                                 name="email"
                                                 type="email"
                                                 required
-                                                value={formData.email}
+                                                value={values.email}
                                                 onChange={handleChange}
                                                 placeholder="name@company.com"
                                                 className="input-kinetic pl-10"
@@ -436,7 +431,7 @@ const Login = () => {
                                                 name="password"
                                                 type={showPassword ? "text" : "password"}
                                                 required
-                                                value={formData.password}
+                                                value={values.password}
                                                 onChange={handleChange}
                                                 placeholder="••••••••••••"
                                                 className="input-kinetic pl-10 pr-10"
@@ -523,7 +518,7 @@ const Login = () => {
                                                         type="checkbox"
                                                         name="terms"
                                                         required
-                                                        checked={formData.terms}
+                                                        checked={values.terms}
                                                         onChange={handleChange}
                                                         className="peer checkbox-kinetic"
                                                     />

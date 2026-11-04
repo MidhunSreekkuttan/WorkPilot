@@ -1,8 +1,10 @@
+import React from "react";
+
 //  ==========================================
 //    3D HERO ILLUSTRATION (LAPTOP, MUG, CARDS)
 //    Matches image_e90b86.png
 //    ========================================== 
-export const Hero3DIllustration = () => (
+export const Hero3DIllustration = React.memo(() => (
     <div className="relative w-full h-56 sm:h-64 flex items-center justify-center select-none">
         <svg
             viewBox="0 0 420 270"
@@ -232,13 +234,13 @@ export const Hero3DIllustration = () => (
             </g>
         </svg>
     </div>
-);
+));
 
 //  ==========================================
 //    3D ROCKET & VOLUMETRIC CLOUDS ILLUSTRATION
 //    Matches image_e908c1.png
 //    ========================================== 
-export const RocketPromo3DIllustration = () => (
+export const RocketPromo3DIllustration = React.memo(() => (
     <svg
         viewBox="0 0 220 200"
         fill="none"
@@ -378,4 +380,4 @@ export const RocketPromo3DIllustration = () => (
             <circle cx="196" cy="196" r="28" fill="url(#cloudSphereGrad)" />
         </g>
     </svg>
-);
+));
