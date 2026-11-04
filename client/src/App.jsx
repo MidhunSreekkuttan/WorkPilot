@@ -1,20 +1,46 @@
-import { Route, Routes } from "react-router-dom"
-import Landing from "./pages/Landing"
-import Login from "./pages/Login"
-import Onboarding from "./pages/Onboarding"
-import Dashboard from "./pages/Dashboard"
+import { lazy, Suspense } from "react"
+import { Route, Routes, useLocation } from "react-router-dom"
+
+const SideBar = lazy(() => import("./components/SideBar"))
+const Footer = lazy(() => import("./components/Footer"))
+const Navbar = lazy(() => import("./components/Navbar"))
+const Landing = lazy(() => import("./pages/Landing"))
+const Login = lazy(() => import("./pages/Login"))
+const Onboarding = lazy(() => import("./pages/Onboarding"))
+const Dashboard = lazy(() => import("./pages/Dashboard"))
+
+function LayoutWraper({ children }) {
+  const { pathname } = useLocation()
+  const hideComp = ["/", "/login", "/onboarding"].includes(pathname)
+  return (
+    <>
+      <div className="flex">
+        {!hideComp && <SideBar />}
+        <div className="flex-1">
+          {!hideComp && <Navbar />}
+          {children}
+        </div>
+      </div>
+      {!hideComp && <Footer />}
+    </>
+  )
+}
 
 const App = () => {
   return (
     <>
-      <Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LayoutWraper>
+          <Routes>
 
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/onboarding" element={<Onboarding />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/dashboard" element={<Dashboard />} />
 
-      </Routes>
+          </Routes>
+        </LayoutWraper>
+      </Suspense>
     </>
   )
 }
