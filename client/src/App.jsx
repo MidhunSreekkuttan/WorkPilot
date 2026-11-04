@@ -1,6 +1,8 @@
 import { lazy, Suspense } from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
 
+import LoadingScreen from "./components/LoadingScreen"
+
 const SideBar = lazy(() => import("./components/SideBar"))
 const Footer = lazy(() => import("./components/Footer"))
 const Navbar = lazy(() => import("./components/Navbar"))
@@ -29,7 +31,7 @@ function LayoutWraper({ children }) {
 const App = () => {
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <LayoutWraper>
           <Routes>
 
