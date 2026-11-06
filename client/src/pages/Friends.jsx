@@ -144,7 +144,7 @@ const Friends = () => {
             document.body.style.overflow = "hidden"
             inviteInputRef.current?.focus()
         } else {
-            document.body.style.overflow = ""
+            document.body.style.overflow = "unset"
         }
 
         const closeReq = (e) => {
@@ -155,7 +155,7 @@ const Friends = () => {
         window.addEventListener('keydown', closeReq)
 
         return () => {
-            document.body.style.overflow = ""
+            document.body.style.overflow = "unset"
             window.removeEventListener('keydown', closeReq)
         }
     }, [openReq])
@@ -172,10 +172,12 @@ const Friends = () => {
                         <div className="grid gap-6 items-start">
 
                             {/* LEFT / MAIN DIRECTORY PANEL */}
-                            <section className="xl:col-span-9 bg-panel dark:bg-surface-container rounded-2xl p-5 sm:p-6 border border-outline-variant/40 shadow-level-2 flex flex-col gap-5">
+                            <section className="xl:col-span-9 bg-panel dark:bg-surface-container rounded-2xl p-5 sm:p-6 border 
+                                border-outline-variant/40 shadow-level-2 flex flex-col gap-5">
 
                                 {/* Header & Filter Tabs */}
-                                <div className="flex flex-wrap justify-between items-center gap-4 sm:gap-7 border-b border-outline-variant/40 pb-3">
+                                <div className="flex flex-wrap justify-between items-center gap-4 sm:gap-7 border-b 
+                                    border-outline-variant/40 pb-3">
                                     <h1 className="text-headline-sm sm:text-headline-md font-bold text-text-main tracking-tight">
                                         Friends &amp; Teammates
                                     </h1>
@@ -188,9 +190,10 @@ const Friends = () => {
                                                     key={tab.id}
                                                     type="button"
                                                     onClick={() => setActiveTab(tab.id)}
-                                                    className={`relative pb-3 -mb-3.5 inline-flex items-center gap-2 text-body-md font-medium transition-colors cursor-pointer ${isActive
-                                                        ? "text-brand-orange font-semibold border-b-2 border-brand-orange"
-                                                        : "text-text-muted hover:text-text-main"
+                                                    className={`relative pb-3 -mb-3.5 inline-flex items-center gap-2 
+                                                        text-body-md font-medium transition-colors cursor-pointer ${isActive
+                                                            ? "text-brand-orange font-semibold border-b-2 border-brand-orange"
+                                                            : "text-text-muted hover:text-text-main"
                                                         }`}
                                                 >
                                                     <span>{tab.label}</span>
@@ -220,7 +223,9 @@ const Friends = () => {
                                 {pendingRequests.map((req) => (
                                     <div
                                         key={req.id}
-                                        className="bg-card/60 dark:bg-surface-container-low rounded-xl px-4 sm:px-5 py-3.5 border border-outline-variant/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                                        className="bg-card/60 dark:bg-surface-container-low rounded-xl px-4 sm:px-5 py-3.5 
+                                            border border-outline-variant/40 flex flex-col sm:flex-row sm:items-center
+                                                 justify-between gap-3"
                                     >
                                         <p className="text-body-md text-text-main font-semibold">
                                             Pending Request: {req.name}{" "}
@@ -233,14 +238,18 @@ const Friends = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => handleAcceptRequest(req)}
-                                                className="px-3.5 py-1.5 rounded-lg text-label-md font-mono font-semibold bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/40 hover:bg-brand-emerald/25 active:scale-95 transition-all cursor-pointer"
+                                                className="px-3.5 py-1.5 rounded-lg text-label-md font-mono font-semibold
+                                                     bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/40 
+                                                        hover:bg-brand-emerald/25 active:scale-95 transition-all cursor-pointer"
                                             >
                                                 [ Accept ]
                                             </button>
                                             <button
                                                 type="button"
                                                 onClick={() => handleDeclineRequest(req.id)}
-                                                className="px-3.5 py-1.5 rounded-lg text-label-md font-mono font-semibold bg-error/15 text-error border border-error/40 hover:bg-error/25 active:scale-95 transition-all cursor-pointer"
+                                                className="px-3.5 py-1.5 rounded-lg text-label-md font-mono font-semibold
+                                                     bg-error/15 text-error border border-error/40 hover:bg-error/25
+                                                         active:scale-95 transition-all cursor-pointer"
                                             >
                                                 [ Decline ]
                                             </button>
@@ -253,7 +262,9 @@ const Friends = () => {
                                     {teammates.map((member) => (
                                         <div
                                             key={member.id}
-                                            className="bg-card/50 dark:bg-surface-container-low rounded-xl p-4 sm:p-5 border border-outline-variant/40 shadow-level-2 card-kinetic-interactive flex flex-col justify-between gap-4"
+                                            className="bg-card/50 dark:bg-surface-container-low rounded-xl p-4 sm:p-5 border 
+                                                border-outline-variant/40 shadow-level-2 card-kinetic-interactive flex flex-col
+                                                     justify-between gap-4"
                                         >
                                             {/* Card Top: Avatar + Name + Online Dot */}
                                             <div className="flex items-start justify-between gap-2">
@@ -262,10 +273,12 @@ const Friends = () => {
                                                         <img
                                                             src={member.avatar}
                                                             alt={member.name}
-                                                            className="w-12 h-12 rounded-full object-cover ring-2 ring-surface-container-highest"
+                                                            className="w-12 h-12 rounded-full object-cover ring-2 
+                                                                ring-surface-container-highest"
                                                         />
                                                         {member.online && (
-                                                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-brand-emerald border-2 border-panel dark:border-surface-container-low" />
+                                                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full 
+                                                                bg-brand-emerald border-2 border-panel dark:border-surface-container-low" />
                                                         )}
                                                     </div>
 
@@ -280,7 +293,8 @@ const Friends = () => {
                                                 </div>
 
                                                 {member.online && (
-                                                    <span className="w-2.5 h-2.5 rounded-full bg-brand-emerald shrink-0 mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+                                                    <span className="w-2.5 h-2.5 rounded-full bg-brand-emerald shrink-0 mt-1.5
+                                                         shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                                                 )}
                                             </div>
 
@@ -291,9 +305,10 @@ const Friends = () => {
                                                         Shared
                                                     </span>
                                                     <span
-                                                        className={`px-2.5 py-0.5 rounded-md text-xs font-medium ${member.workspaceVariant === "marketing"
-                                                            ? "bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30"
-                                                            : "bg-indigo-500/15 text-indigo-400 border border-indigo-500/30"
+                                                        className={`px-2.5 py-0.5 rounded-md text-xs font-medium 
+                                                            ${member.workspaceVariant === "marketing"
+                                                                ? "bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30"
+                                                                : "bg-indigo-500/15 text-indigo-400 border border-indigo-500/30"
                                                             }`}
                                                     >
                                                         {member.sharedWorkspace}
@@ -313,7 +328,10 @@ const Friends = () => {
                                             {/* Card Bottom: Message Action Button */}
                                             <button
                                                 type="button"
-                                                className="w-full py-2 px-4 rounded-lg bg-panel/70 dark:bg-surface-container border border-outline-variant/40 text-label-md font-mono text-text-main hover:border-brand-orange hover:text-brand-orange hover:bg-brand-orange/5 active:scale-98 transition-all cursor-pointer"
+                                                className="w-full py-2 px-4 rounded-lg bg-panel/70 dark:bg-surface-container
+                                                     border border-outline-variant/40 text-label-md font-mono text-text-main
+                                                         hover:border-brand-orange hover:text-brand-orange 
+                                                            hover:bg-brand-orange/5 active:scale-98 transition-all cursor-pointer"
                                             >
                                                 [ Message ]
                                             </button>
@@ -328,11 +346,12 @@ const Friends = () => {
 
                 {openReq && (
                     <div onClick={() => setOpenReq(false)}
-                        className="absolute inset-0 z-50 bg-canvas/50 backdrop-blur-sm flex items-center justify-center p-4">
+                        className="fixed inset-0 z-50 bg-canvas/50 backdrop-blur-sm flex items-center justify-center p-4">
 
                         {/* Add by Email or Token Widget */}
                         <div onClick={e => e.stopPropagation()}
-                            className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-3.5 w-full max-w-2xl">
+                            className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40
+                                 shadow-level-2 flex flex-col gap-3.5 w-full max-w-[30vw]">
                             <h2 className="text-title-md font-bold text-text-main">
                                 Add by Email or Token
                             </h2>

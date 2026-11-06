@@ -1,6 +1,7 @@
 import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
 import { FaArrowRight, FaMoon, FaPlay, FaSun } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from 'react-router-dom'
 
 const avatars = [
   { initials: "SJ", gradient: "from-indigo-500 to-purple-600" },
@@ -11,6 +12,8 @@ const avatars = [
 
 const Landing = () => {
   const { theme, toggleTheme } = useTheme();
+
+  const navigate = useNavigate()
 
   return (
     <div className="relative min-h-screen overflow-hidden surface-level-0 text-text-main">
@@ -64,6 +67,7 @@ const Landing = () => {
             </button>
 
             <PrimaryBtn
+              onClick={() => navigate('/login')}
               text="Get Started"
               className="text-sm md:text-base"
               icon={<FaArrowRight />}
@@ -95,6 +99,7 @@ const Landing = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row justify-between gap-4 mt-2">
                 <PrimaryBtn
+                  onClick={() => navigate('/login')}
                   text="Get Started"
                   className="text-base md:text-lg w-full h-13"
                   icon={<FaArrowRight />}

@@ -4,7 +4,8 @@ import {
   FaLayerGroup,
   FaCog,
   FaSignOutAlt,
-  FaChevronDown
+  FaChevronDown,
+  FaUserFriends
 } from "react-icons/fa";
 import { NavLink } from 'react-router-dom'
 
@@ -26,7 +27,7 @@ const navigations = [
   { label: "Home", icon: FaHome, path: "/dashboard" },
   { label: "Chat", icon: FaRegComments, path: "/chats" },
   { label: "Workspace", icon: FaLayerGroup, path: "/workspace" },
-  { label: "Friends", icon: FaLayerGroup, path: "/friends" },
+  { label: "Friends", icon: FaUserFriends, path: "/friends" },
 ];
 
 const SideBar = () => {

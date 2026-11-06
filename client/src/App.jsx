@@ -16,6 +16,7 @@ const Friends = lazy(() => import("./pages/Friends"))
 function LayoutWraper({ children }) {
   const { pathname } = useLocation()
   const hideComp = ["/", "/login", "/onboarding"].includes(pathname)
+  const hideFooter = ["/dashboard", "/chats", "/friends"].includes(pathname)
   return (
     <>
       <div className="flex">
@@ -25,7 +26,7 @@ function LayoutWraper({ children }) {
           {children}
         </div>
       </div>
-      {!hideComp && <Footer />}
+      {!hideComp && !hideFooter && <Footer />}
     </>
   )
 }
