@@ -11,12 +11,15 @@ const Navbar = () => {
 
         {/* Center/Left: Search Bar */}
         <div className="flex-1 max-w-2xl hidden md:block">
-          <div className="relative flex items-center w-full h-10 rounded-lg bg-surface-container-lowest border border-outline-variant/50 focus-within:border-brand-orange focus-within:ring-1 focus-within:ring-brand-orange transition-all overflow-hidden shadow-inner">
+          <div className="relative flex items-center w-full h-10 rounded-lg bg-surface-container-lowest border 
+            border-outline-variant/50 focus-within:border-brand-orange focus-within:ring-1 focus-within:ring-brand-orange 
+              transition-all overflow-hidden shadow-inner">
             <div className="pl-3.5 flex items-center justify-center text-text-muted">
               <FaSearch className="text-sm" />
             </div>
             <input
-              className="w-full h-full pl-2.5 pr-4 bg-transparent text-text-main text-body-md focus:outline-none placeholder:text-text-placeholder"
+              className="w-full h-full pl-2.5 pr-4 bg-transparent text-text-main text-body-md focus:outline-none 
+                placeholder:text-text-placeholder"
               type="text"
               placeholder="Search workspaces, tasks, or members..."
             />
@@ -27,13 +30,15 @@ const Navbar = () => {
         <div className="flex items-center gap-2 sm:gap-4 ml-auto">
           <button
             onClick={toggleTheme}
-            className="text-text-muted hover:text-text-main transition-colors p-2 rounded-full hover:bg-surface-container cursor-pointer"
+            className="text-text-muted hover:text-text-main transition-colors p-2 rounded-full hover:bg-surface-container 
+              cursor-pointer"
             aria-label="Toggle Theme"
           >
             {theme === "light" ? <FaMoon className="text-lg" /> : <FaSun className="text-lg" />}
           </button>
 
-          <button className="relative text-text-muted hover:text-text-main transition-colors p-2 rounded-full hover:bg-surface-container cursor-pointer">
+          <button className="relative text-text-muted hover:text-text-main transition-colors p-2 rounded-full
+             hover:bg-surface-container cursor-pointer">
             <IoMdNotificationsOutline className="text-2xl" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-brand-orange border border-panel animate-pulse" />
           </button>

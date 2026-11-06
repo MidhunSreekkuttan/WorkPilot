@@ -277,29 +277,34 @@ const Chats = () => {
                 <title>WorkPilot | Chats</title>
             </Helmet>
 
-            <div className="min-h-[calc(100vh-4.5rem)] surface-level-0 text-text-main flex selection:bg-brand-orange selection:text-white">
+            <div className="min-h-[calc(100vh-4.5rem)] surface-level-0 text-text-main flex selection:bg-brand-orange
+                 selection:text-white">
                 <main className="flex-1 px-4 sm:px-8 py-4 max-w-[1440px] w-full mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-6.5rem)] min-h-[580px]">
 
                         {/* =========================================================
                 LEFT COLUMN: CHAT SESSION AREA (8 COLS)
                ========================================================= */}
-                        <section className="lg:col-span-8 bg-panel dark:bg-surface-container rounded-2xl border border-outline-variant/40 shadow-level-2 flex flex-col overflow-hidden relative">
+                        <section className="lg:col-span-8 bg-panel dark:bg-surface-container rounded-2xl border
+                             border-outline-variant/40 shadow-level-2 flex flex-col overflow-hidden relative">
                             {selectedContact ? (
                                 <>
                                     {/* 1. Active Chat Header */}
-                                    <header className="px-5 py-3.5 bg-panel/90 dark:bg-surface-container-high/60 border-b border-outline-variant/40 flex items-center justify-between gap-4 shrink-0">
+                                    <header className="px-5 py-3.5 bg-panel/90 dark:bg-surface-container-high/60 border-b
+                                         border-outline-variant/40 flex items-center justify-between gap-4 shrink-0">
                                         <div className="flex items-center gap-3.5 min-w-0">
                                             <div className="relative shrink-0">
                                                 <img
                                                     src={selectedContact.avatar}
                                                     alt={selectedContact.name}
-                                                    className="w-11 h-11 rounded-full object-cover ring-2 ring-surface-container-highest"
+                                                    className="w-11 h-11 rounded-full object-cover ring-2 
+                                                        ring-surface-container-highest"
                                                 />
                                                 <span
-                                                    className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-panel dark:border-surface-container ${selectedContact.online
-                                                        ? "bg-brand-emerald"
-                                                        : "bg-text-placeholder"
+                                                    className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 
+                                                        border-panel dark:border-surface-container ${selectedContact.online
+                                                            ? "bg-brand-emerald"
+                                                            : "bg-text-placeholder"
                                                         }`}
                                                 />
                                             </div>
@@ -310,14 +315,16 @@ const Chats = () => {
                                                         {selectedContact.name}
                                                     </h2>
                                                     <span
-                                                        className={`px-2 py-0.5 rounded text-[11px] font-medium ${selectedContact.workspaceVariant === "marketing"
-                                                            ? "bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30"
-                                                            : "bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30"
+                                                        className={`px-2 py-0.5 rounded text-[11px] font-medium 
+                                                            ${selectedContact.workspaceVariant === "marketing"
+                                                                ? "bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30"
+                                                                : "bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30"
                                                             }`}
                                                     >
                                                         {selectedContact.workspace}
                                                     </span>
-                                                    <span className="px-2 py-0.5 rounded bg-brand-orange/15 text-brand-orange border border-brand-orange/30 text-[11px] font-mono font-semibold">
+                                                    <span className="px-2 py-0.5 rounded bg-brand-orange/15 text-brand-orange
+                                                         border border-brand-orange/30 text-[11px] font-mono font-semibold">
                                                         {selectedContact.taskRef}
                                                     </span>
                                                 </div>
@@ -341,14 +348,16 @@ const Chats = () => {
                                             <button
                                                 type="button"
                                                 aria-label="Start voice call"
-                                                className="p-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-card transition-colors cursor-pointer"
+                                                className="p-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-card 
+                                                    transition-colors cursor-pointer"
                                             >
                                                 <FaPhoneAlt className="text-sm" />
                                             </button>
                                             <button
                                                 type="button"
                                                 aria-label="Start video call"
-                                                className="p-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-card transition-colors cursor-pointer"
+                                                className="p-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-card 
+                                                    transition-colors cursor-pointer"
                                             >
                                                 <FaVideo className="text-sm" />
                                             </button>
@@ -357,14 +366,16 @@ const Chats = () => {
                                                 onClick={() => setSelectedContactId(null)}
                                                 aria-label="Close chat session"
                                                 title="Close session"
-                                                className="p-2.5 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-colors cursor-pointer"
+                                                className="p-2.5 rounded-lg text-text-muted hover:text-error hover:bg-error/10
+                                                     transition-colors cursor-pointer"
                                             >
                                                 <FaTimes className="text-sm" />
                                             </button>
                                             <button
                                                 type="button"
                                                 aria-label="Conversation options"
-                                                className="p-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-card transition-colors cursor-pointer"
+                                                className="p-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-card 
+                                                    transition-colors cursor-pointer"
                                             >
                                                 <FaEllipsisV className="text-sm" />
                                             </button>
@@ -372,10 +383,13 @@ const Chats = () => {
                                     </header>
 
                                     {/* 2. Messages Stream */}
-                                    <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-canvas/40 dark:bg-surface-container-lowest/40">
+                                    <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-canvas/40
+                                         dark:bg-surface-container-lowest/40">
                                         {/* Telemetry Session Banner */}
                                         <div className="flex items-center justify-center my-2">
-                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card/80 dark:bg-surface-container-low border border-outline-variant/30 text-[11px] font-mono text-text-muted">
+                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card/80
+                                                 dark:bg-surface-container-low border border-outline-variant/30 text-[11px] 
+                                                    font-mono text-text-muted">
                                                 <FaLock className="text-[10px] text-brand-emerald" />
                                                 <span>
                                                     E2E ENCRYPTED CHANNEL • {selectedContact.workspace.toUpperCase()}
@@ -396,14 +410,16 @@ const Chats = () => {
                                                             <img
                                                                 src={selectedContact.avatar}
                                                                 alt={selectedContact.name}
-                                                                className="w-7 h-7 rounded-full object-cover shrink-0 mb-1 ring-1 ring-outline-variant/40"
+                                                                className="w-7 h-7 rounded-full object-cover shrink-0 mb-1 
+                                                                    ring-1 ring-outline-variant/40"
                                                             />
                                                         )}
 
                                                         <div
-                                                            className={`px-4 py-3 rounded-2xl text-body-md leading-relaxed shadow-xs ${isMe
-                                                                ? "bg-gradient-to-r from-brand-orange-light to-brand-orange-dark text-white rounded-br-xs shadow-orange-glow"
-                                                                : "bg-card dark:bg-surface-container-high text-text-main border border-outline-variant/40 rounded-bl-xs"
+                                                            className={`px-4 py-3 rounded-2xl text-body-md leading-relaxed 
+                                                                    shadow-xs ${isMe
+                                                                    ? "bg-gradient-to-r from-brand-orange-light to-brand-orange-dark text-white rounded-br-xs shadow-orange-glow"
+                                                                    : "bg-card dark:bg-surface-container-high text-text-main border border-outline-variant/40 rounded-bl-xs"
                                                                 }`}
                                                         >
                                                             <p>{msg.text}</p>
@@ -411,7 +427,8 @@ const Chats = () => {
                                                     </div>
 
                                                     <div
-                                                        className={`flex items-center gap-1.5 mt-1 text-[11px] font-mono text-text-muted ${isMe ? "pr-1" : "pl-9"
+                                                        className={`flex items-center gap-1.5 mt-1 text-[11px] font-mono
+                                                             text-text-muted ${isMe ? "pr-1" : "pl-9"
                                                             }`}
                                                     >
                                                         <span>{msg.time}</span>
@@ -429,19 +446,22 @@ const Chats = () => {
                                     {/* 3. Message Composer Footer */}
                                     <form
                                         onSubmit={handleSendMessage}
-                                        className="p-3.5 sm:p-4 bg-panel dark:bg-surface-container border-t border-outline-variant/40 flex items-center gap-2.5 shrink-0"
+                                        className="p-3.5 sm:p-4 bg-panel dark:bg-surface-container border-t
+                                             border-outline-variant/40 flex items-center gap-2.5 shrink-0"
                                     >
                                         <button
                                             type="button"
                                             aria-label="Attach file"
-                                            className="p-2.5 rounded-lg text-text-muted hover:text-brand-orange hover:bg-card transition-colors cursor-pointer shrink-0"
+                                            className="p-2.5 rounded-lg text-text-muted hover:text-brand-orange hover:bg-card 
+                                                transition-colors cursor-pointer shrink-0"
                                         >
                                             <FaPaperclip className="text-sm" />
                                         </button>
                                         <button
                                             type="button"
                                             aria-label="Insert code snippet"
-                                            className="p-2.5 rounded-lg text-text-muted hover:text-brand-cyan hover:bg-card transition-colors cursor-pointer shrink-0 hidden sm:inline-flex"
+                                            className="p-2.5 rounded-lg text-text-muted hover:text-brand-cyan hover:bg-card 
+                                                transition-colors cursor-pointer shrink-0 hidden sm:inline-flex"
                                         >
                                             <FaCode className="text-sm" />
                                         </button>
@@ -459,7 +479,8 @@ const Chats = () => {
                                             <button
                                                 type="button"
                                                 aria-label="Add emoji"
-                                                className="absolute right-3 text-text-muted hover:text-brand-orange transition-colors cursor-pointer"
+                                                className="absolute right-3 text-text-muted hover:text-brand-orange 
+                                                    transition-colors cursor-pointer"
                                             >
                                                 <FaSmile className="text-base" />
                                             </button>
@@ -471,7 +492,8 @@ const Chats = () => {
                                             text="Send"
                                             icon={<FaPaperPlane className="text-xs" />}
                                             position="right"
-                                            className="px-4 py-2.5 rounded-lg text-label-md shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="px-4 py-2.5 rounded-lg text-label-md shrink-0 disabled:opacity-50 
+                                                disabled:cursor-not-allowed"
                                         />
                                     </form>
                                 </>
@@ -482,19 +504,26 @@ const Chats = () => {
                                 <div className="flex-1 flex flex-col items-center justify-center p-8 text-center relative
                                      overflow-hidden select-none">
                                     {/* Ambient Background Glows */}
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
-                                    <div className="absolute top-1/3 left-1/3 w-48 h-48 bg-brand-cyan/10 rounded-full blur-2xl pointer-events-none" />
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 
+                                        bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
+                                    <div className="absolute top-1/3 left-1/3 w-48 h-48 bg-brand-cyan/10 rounded-full blur-2xl
+                                         pointer-events-none" />
 
                                     {/* Orbital Icon Container */}
                                     <div className="relative flex items-center justify-center w-24 h-24 mb-6">
-                                        <div className="absolute inset-0 rounded-full border border-dashed border-brand-orange/40 animate-[spin_25s_linear_infinite]" />
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-orange/20 to-brand-cyan/10 border border-outline-variant/40 flex items-center justify-center text-brand-orange shadow-level-2">
+                                        <div className="absolute inset-0 rounded-full border border-dashed
+                                             border-brand-orange/40 animate-[spin_25s_linear_infinite]" />
+                                        <div className="w-16 h-16 rounded-2xl 
+                                            bg-gradient-to-br from-brand-orange/20 to-brand-cyan/10 border 
+                                                border-outline-variant/40 flex items-center justify-center text-brand-orange 
+                                                    shadow-level-2">
                                             <FaRegComments className="text-3xl" />
                                         </div>
                                     </div>
 
                                     {/* Status Pill */}
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card dark:bg-surface-container-high border border-outline-variant/40 mb-3">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card 
+                                        dark:bg-surface-container-high border border-outline-variant/40 mb-3">
                                         <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
                                         <span className="text-label-caps text-text-muted font-mono">
                                             COMM-LINK STANDBY • {onlineCount} TEAMMATES ONLINE
@@ -559,7 +588,8 @@ const Chats = () => {
                                         </p>
                                     </div>
 
-                                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-emerald/15 border border-brand-emerald/30 text-brand-emerald text-label-caps">
+                                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-emerald/15 
+                                        border border-brand-emerald/30 text-brand-emerald text-label-caps">
                                         <FaCircle className="text-[7px]" />
                                         <span>{onlineCount} Online</span>
                                     </div>
@@ -578,7 +608,8 @@ const Chats = () => {
                                 </div>
 
                                 {/* Filter Tabs */}
-                                <div className="grid grid-cols-3 gap-1.5 bg-card/70 dark:bg-surface-container-lowest p-1 rounded-xl border border-outline-variant/30">
+                                <div className="grid grid-cols-3 gap-1.5 bg-card/70 dark:bg-surface-container-lowest p-1
+                                     rounded-xl border border-outline-variant/30">
                                     {[
                                         { id: "all", label: "All", count: contacts.length },
                                         { id: "online", label: "Online", count: onlineCount },
@@ -590,9 +621,10 @@ const Chats = () => {
                                                 key={tab.id}
                                                 type="button"
                                                 onClick={() => setContactFilter(tab.id)}
-                                                className={`py-1.5 px-2 rounded-lg text-label-md font-medium flex items-center justify-center gap-1.5 transition-all cursor-pointer ${active
-                                                    ? "bg-panel dark:bg-surface-container-high text-brand-orange font-semibold shadow-xs"
-                                                    : "text-text-muted hover:text-text-main"
+                                                className={`py-1.5 px-2 rounded-lg text-label-md font-medium flex items-center
+                                                         justify-center gap-1.5 transition-all cursor-pointer ${active
+                                                        ? "bg-panel dark:bg-surface-container-high text-brand-orange font-semibold shadow-xs"
+                                                        : "text-text-muted hover:text-text-main"
                                                     }`}
                                             >
                                                 <span>{tab.label}</span>
@@ -623,9 +655,10 @@ const Chats = () => {
                                                 key={contact.id}
                                                 type="button"
                                                 onClick={() => handleSelectContact(contact.id)}
-                                                className={`w-full p-4 flex items-start gap-3.5 text-left transition-all cursor-pointer ${isSelected
-                                                    ? "bg-brand-orange/10 dark:bg-brand-orange/15 priority-bar-left"
-                                                    : "hover:bg-row-hover"
+                                                className={`w-full p-4 flex items-start gap-3.5 text-left transition-all
+                                                         cursor-pointer ${isSelected
+                                                        ? "bg-brand-orange/10 dark:bg-brand-orange/15 priority-bar-left"
+                                                        : "hover:bg-row-hover"
                                                     }`}
                                             >
                                                 {/* Avatar + Online Indicator */}
@@ -633,12 +666,14 @@ const Chats = () => {
                                                     <img
                                                         src={contact.avatar}
                                                         alt={contact.name}
-                                                        className="w-11 h-11 rounded-full object-cover ring-2 ring-surface-container-highest"
+                                                        className="w-11 h-11 rounded-full object-cover ring-2 
+                                                            ring-surface-container-highest"
                                                     />
                                                     <span
-                                                        className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-panel dark:border-surface-container ${contact.online
-                                                            ? "bg-brand-emerald"
-                                                            : "bg-text-placeholder"
+                                                        className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2
+                                                                 border-panel dark:border-surface-container ${contact.online
+                                                                ? "bg-brand-emerald"
+                                                                : "bg-text-placeholder"
                                                             }`}
                                                     />
                                                 </div>
@@ -690,7 +725,9 @@ const Chats = () => {
                                                         </p>
 
                                                         {contact.unread > 0 && (
-                                                            <span className="px-2 py-0.5 rounded-full bg-brand-orange text-white text-[10px] font-mono font-bold shrink-0 shadow-orange-glow">
+                                                            <span className="px-2 py-0.5 rounded-full bg-brand-orange
+                                                                 text-white text-[10px] font-mono font-bold shrink-0
+                                                                     shadow-orange-glow">
                                                                 {contact.unread}
                                                             </span>
                                                         )}

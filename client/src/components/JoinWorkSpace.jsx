@@ -37,16 +37,19 @@ const JoinWorkSpace = ({ setActiveModal, }) => {
             onClick={(e) => {
                 if (e.target === e.currentTarget) setActiveModal(null);
             }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-background/80 backdrop-blur-md transition-opacity duration-200"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-background/80 backdrop-blur-md 
+                transition-opacity duration-200"
         >
-            <div className="relative w-full max-w-[32rem] bg-surface-container border border-outline-variant/40 rounded-xl shadow-2xl overflow-hidden flex flex-col">
+            <div className="relative w-full max-w-[32rem] bg-surface-container border border-outline-variant/40 rounded-xl 
+                shadow-2xl overflow-hidden flex flex-col">
                 {/* Glow Corner */}
                 <div className="absolute -top-16 -right-16 w-48 h-48 bg-secondary/20 rounded-full blur-2xl pointer-events-none" />
 
                 {/* Modal Header */}
                 <div className="px-6 pt-6 pb-4 flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary shadow-md">
+                        <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center
+                             text-secondary shadow-md">
                             <FaKey className="text-lg" />
                         </div>
                         <div>
@@ -92,12 +95,16 @@ const JoinWorkSpace = ({ setActiveModal, }) => {
                                 value={inviteCode}
                                 onChange={(e) => setInviteCode(e.target.value)}
                                 placeholder="https://workpilot.com/join/WP-..."
-                                className="w-full pl-9 pr-20 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface text-body-md border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-secondary shadow-inner"
+                                className="w-full pl-9 pr-20 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface 
+                                    text-body-md border border-outline-variant/40 placeholder:text-on-surface-variant/40
+                                         focus:outline-none focus:ring-2 focus:ring-secondary shadow-inner"
                             />
                             <button
                                 type="button"
                                 onClick={handlePasteCode}
-                                className="absolute right-1.5 px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant hover:text-on-surface text-label-caps uppercase transition-colors cursor-pointer"
+                                className="absolute right-1.5 px-2.5 py-1 rounded bg-surface-container-high 
+                                    text-on-surface-variant hover:text-on-surface text-label-caps uppercase transition-colors
+                                         cursor-pointer"
                             >
                                 Paste
                             </button>
@@ -105,9 +112,11 @@ const JoinWorkSpace = ({ setActiveModal, }) => {
                     </div>
 
                     {/* Detected Preview Card Dynamic */}
-                    <div className="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/30 flex items-center justify-between">
+                    <div className="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/30 flex 
+                        items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-sm">
+                            <div className="w-8 h-8 rounded bg-secondary-container text-on-secondary-container flex items-center 
+                                justify-center font-bold text-sm">
                                 NX
                             </div>
                             <div className="flex flex-col">
@@ -119,7 +128,8 @@ const JoinWorkSpace = ({ setActiveModal, }) => {
                                 </span>
                             </div>
                         </div>
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary text-label-caps">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-container/20 
+                            text-tertiary text-label-caps">
                             <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />{" "}
                             Valid
                         </span>

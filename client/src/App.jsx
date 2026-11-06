@@ -12,11 +12,12 @@ const Onboarding = lazy(() => import("./pages/Onboarding"))
 const Dashboard = lazy(() => import("./pages/Dashboard"))
 const Chats = lazy(() => import("./pages/Chats"))
 const Friends = lazy(() => import("./pages/Friends"))
+const Settings = lazy(() => import("./pages/Settings"))
 
 function LayoutWraper({ children }) {
   const { pathname } = useLocation()
   const hideComp = ["/", "/login", "/onboarding"].includes(pathname)
-  const hideFooter = ["/dashboard", "/chats", "/friends"].includes(pathname)
+  const hideFooter = ["/dashboard", "/chats", "/friends", "/settings"].includes(pathname)
   return (
     <>
       <div className="flex">
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/chats" element={<Chats />} />
             <Route path="/friends" element={<Friends />} />
+            <Route path="/settings" element={<Settings />} />
 
           </Routes>
         </LayoutWraper>

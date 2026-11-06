@@ -61,7 +61,9 @@ const Footer = () => {
                     key={social.label}
                     href={social.path}
                     aria-label={social.label}
-                    className="w-9 h-9 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-text-muted hover:text-brand-orange hover:border-brand-orange/50 hover:shadow-orange-glow transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-surface-container border border-outline-variant/40 flex items-center 
+                      justify-center text-text-muted hover:text-brand-orange hover:border-brand-orange/50 
+                        hover:shadow-orange-glow transition-all cursor-pointer"
                   >
                     <Icon className="text-sm" />
                   </a>
@@ -98,7 +100,8 @@ const Footer = () => {
             © {new Date().getFullYear()} WorkPilot, Inc. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 shadow-inner cursor-default">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border
+             border-outline-variant/30 shadow-inner cursor-default">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-emerald" />

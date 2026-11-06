@@ -24,7 +24,7 @@ const CreateWorkSpace = ({ setActiveModal }) => {
         workspaceName: "",
         workspaceDesc: ""
     })
-    
+
     // Derived Slug & Avatar Initials
     const trimmedName = values.workspaceName.trim().toLowerCase();
     const slugPreview = trimmedName
@@ -61,16 +61,20 @@ const CreateWorkSpace = ({ setActiveModal }) => {
             onClick={(e) => {
                 if (e.target === e.currentTarget) setActiveModal(null);
             }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-background/80 backdrop-blur-md transition-opacity duration-200"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-background/80 backdrop-blur-md 
+                transition-opacity duration-200"
         >
-            <div className="relative w-full max-w-[36rem] bg-surface-container border border-outline-variant/40 rounded-xl shadow-2xl overflow-hidden flex flex-col">
+            <div className="relative w-full max-w-[36rem] bg-surface-container border border-outline-variant/40 rounded-xl 
+                shadow-2xl overflow-hidden flex flex-col">
                 {/* Glow Corner */}
-                <div className="absolute -top-16 -right-16 w-48 h-48 bg-primary-container/20 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -top-16 -right-16 w-48 h-48 bg-primary-container/20 rounded-full blur-2xl 
+                    pointer-events-none" />
 
                 {/* Modal Header */}
                 <div className="px-6 pt-6 pb-4 flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-linear-to-b from-[#FF7A00] to-[#FF5500] flex items-center justify-center text-on-primary-container shadow-md">
+                        <div className="w-10 h-10 rounded-lg bg-linear-to-b from-[#FF7A00] to-[#FF5500] flex items-center 
+                            justify-center text-on-primary-container shadow-md">
                             <FaBuilding className="text-lg" />
                         </div>
                         <div>
@@ -118,9 +122,12 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                             value={values.workspaceName}
                             onChange={handleChange}
                             placeholder="e.g. Acme Engineering or Core Infrastructure"
-                            className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface text-body-md border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-primary-container shadow-inner"
+                            className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface text-body-md
+                                 border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none
+                                     focus:ring-2 focus:ring-primary-container shadow-inner"
                         />
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-highest/60 rounded text-xs font-mono text-on-surface-variant">
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-highest/60 rounded text-xs 
+                            font-mono text-on-surface-variant">
                             <FaLink className="text-xs text-primary" />
                             <span>workpilot.com/</span>
                             <span className="text-primary font-semibold">
@@ -147,7 +154,9 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                             value={values.workspaceDesc}
                             onChange={handleChange}
                             placeholder="Briefly describe the purpose of this workspace..."
-                            className="w-full px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface text-body-md border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-primary-container resize-none shadow-inner"
+                            className="w-full px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface text-body-md 
+                                border border-outline-variant/40 placeholder:text-on-surface-variant/40 focus:outline-none
+                                     focus:ring-2 focus:ring-primary-container resize-none shadow-inner"
                         />
                     </div>
 
@@ -159,7 +168,8 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                         <div className="flex items-center gap-3">
                             <div
                                 style={{ backgroundColor: selectedColor }}
-                                className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white text-headline-sm transition-colors"
+                                className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white 
+                                    text-headline-sm transition-colors"
                             >
                                 {getInitials(values.workspaceName)}
                             </div>
@@ -169,9 +179,11 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                                         key={item.id}
                                         type="button"
                                         onClick={() => setSelectedColor(item.hex)}
-                                        className={`w-6 h-6 rounded-full ${item.bgClass} ring-offset-2 ring-offset-surface-container focus:outline-none cursor-pointer transition-all ${selectedColor === item.hex
-                                            ? "ring-2 ring-primary"
-                                            : ""
+                                        className={`w-6 h-6 rounded-full ${item.bgClass} ring-offset-2 
+                                            ring-offset-surface-container focus:outline-none cursor-pointer transition-all
+                                                 ${selectedColor === item.hex
+                                                ? "ring-2 ring-primary"
+                                                : ""
                                             }`}
                                     />
                                 ))}
@@ -190,9 +202,10 @@ const CreateWorkSpace = ({ setActiveModal }) => {
                                     key={size}
                                     type="button"
                                     onClick={() => setSelectedTeamSize(size)}
-                                    className={`py-2 rounded-lg text-label-md text-center transition-colors cursor-pointer ${selectedTeamSize === size
-                                        ? "bg-surface-container-high text-on-surface font-semibold"
-                                        : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high"
+                                    className={`py-2 rounded-lg text-label-md text-center transition-colors cursor-pointer 
+                                        ${selectedTeamSize === size
+                                            ? "bg-surface-container-high text-on-surface font-semibold"
+                                            : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high"
                                         }`}
                                 >
                                     {size}
