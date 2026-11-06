@@ -6,13 +6,14 @@ import {
   FaSignOutAlt,
   FaChevronDown
 } from "react-icons/fa";
+import { NavLink } from 'react-router-dom'
 
 const NavItem = ({ icon: Icon, label, active }) => {
   return (
     <button
       className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 w-full cursor-pointer ${active
-          ? "bg-gradient-to-r from-brand-orange to-brand-orange-dark text-white shadow-orange-glow font-semibold"
-          : "text-text-muted hover:text-text-main hover:bg-card"
+        ? "bg-gradient-to-r from-brand-orange to-brand-orange-dark text-white shadow-orange-glow font-semibold"
+        : "text-text-muted hover:text-text-main hover:bg-card"
         }`}
     >
       <Icon className="text-lg shrink-0" />
@@ -20,6 +21,12 @@ const NavItem = ({ icon: Icon, label, active }) => {
     </button>
   );
 };
+
+const navigations = [
+  { label: "Home", icon: FaHome, path: "/dashboard" },
+  { label: "Chat", icon: FaRegComments, path: "/chats" },
+  { label: "Workspace", icon: FaLayerGroup, path: "/workspace" }
+];
 
 const SideBar = () => {
   return (
@@ -41,11 +48,17 @@ const SideBar = () => {
         </h2>
       </div>
 
-      {/* Primary Navigation[cite: 1] */}
       <nav className="flex flex-col gap-2">
-        <NavItem icon={FaHome} label="Home" active={true} />
-        <NavItem icon={FaRegComments} label="Chats" />
-        <NavItem icon={FaLayerGroup} label="Workspace" />
+        {navigations.map((items) => (
+          <NavLink key={items.label}
+            to={items.path}
+            className="w-full block"
+          >
+            {({ isActive }) => (
+              <NavItem icon={items.icon} label={items.label} active={isActive} />
+            )}
+          </NavLink>
+        ))}
       </nav>
 
       {/* Flexible spacer to push bottom content down */}
