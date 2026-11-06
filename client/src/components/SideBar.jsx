@@ -25,7 +25,8 @@ const NavItem = ({ icon: Icon, label, active }) => {
 const navigations = [
   { label: "Home", icon: FaHome, path: "/dashboard" },
   { label: "Chat", icon: FaRegComments, path: "/chats" },
-  { label: "Workspace", icon: FaLayerGroup, path: "/workspace" }
+  { label: "Workspace", icon: FaLayerGroup, path: "/workspace" },
+  { label: "Friends", icon: FaLayerGroup, path: "/friends" },
 ];
 
 const SideBar = () => {
