@@ -6,7 +6,7 @@ import {
   FaSignOutAlt,
   FaUserFriends
 } from "react-icons/fa";
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NavItem = ({ icon: Icon, label, active, ...props }) => {
   return (
@@ -31,11 +31,8 @@ const navigations = [
 ];
 
 const SideBar = () => {
-
-  const navigate = useNavigate()
-
   return (
-    <aside className="w-54 h-screen bg-panel border-r border-outline-variant/40 flex flex-col px-4 shrink-0 sticky top-0">
+    <aside className="w-54 h-screen z-50 bg-panel border-r border-outline-variant/40 flex flex-col px-4 shrink-0 sticky top-0">
 
       {/* Top Branding[cite: 1] */}
       <div className="flex flex-col items-center mb-10">
@@ -96,7 +93,11 @@ const SideBar = () => {
 
         {/* System/Action Navigation[cite: 1] */}
         <nav className="flex flex-col gap-1.5">
-          <NavItem onClick={() => navigate('/settings')} icon={FaCog} label="Settings" />
+          <NavLink to="/settings">
+            {({ isActive }) => (
+              <NavItem icon={FaCog} label="Settings" active={isActive} />
+            )}
+          </NavLink>
           <NavItem icon={FaSignOutAlt} label="Logout" />
         </nav>
       </div>
