@@ -1,7 +1,6 @@
-import { lazy, Suspense } from "react"
+import { lazy } from "react"
 import { Route } from "react-router-dom"
 
-import LoadingScreen from "../components/LoadingScreen"
 import GlobalLayout from "../layouts/GlobalLayout"
 
 const Landing = lazy(() => import("../pages/Landing"))
@@ -15,11 +14,7 @@ const Settings = lazy(() => import("../pages/Settings"))
 const GlobalRoutes = () => {
     return (
         <>
-            <Route element={
-                <Suspense fallback={<LoadingScreen />}>
-                    <GlobalLayout />
-                </Suspense>
-            }>
+            <Route element={<GlobalLayout />}>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/onboarding" element={<Onboarding />} />
