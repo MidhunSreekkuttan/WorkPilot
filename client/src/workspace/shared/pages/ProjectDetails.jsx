@@ -85,7 +85,8 @@ const initialProjectSquad = [
     role: "Lead UI/UX",
     task: "#WP-482",
     online: true,
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
   },
   {
     id: "david-lee",
@@ -93,7 +94,8 @@ const initialProjectSquad = [
     role: "Staff Backend",
     task: "#WP-311",
     online: true,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
   },
   {
     id: "alex-chen",
@@ -101,7 +103,8 @@ const initialProjectSquad = [
     role: "Frontend Engineer",
     task: "#WP-509",
     online: true,
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
   },
   {
     id: "marcus-chen",
@@ -109,7 +112,8 @@ const initialProjectSquad = [
     role: "QA Architect",
     task: "PR-12",
     online: false,
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
   },
 ];
 
@@ -118,19 +122,22 @@ const availableWorkspaceCandidates = [
     id: "emily-watson",
     name: "Emily Watson",
     role: "Frontend Engineer",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
   },
   {
     id: "michael-brown",
     name: "Michael Brown",
     role: "Full-Stack Dev",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&auto=format&fit=crop&q=80",
   },
   {
     id: "jessica-taylor",
     name: "Jessica Taylor",
     role: "Content Lead",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
   },
 ];
 
@@ -139,7 +146,8 @@ const initialProjectTasks = [
     id: "WP-482",
     title: "Refactor Transaction History virtualized list",
     assignee: "Sarah Kim",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
     priority: "High",
     status: "In Progress",
     due: "Today, 6:00 PM",
@@ -150,7 +158,8 @@ const initialProjectTasks = [
     id: "WP-509",
     title: "Audit dark-mode contrast tokens on Kanban cards",
     assignee: "Alex Chen",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
     priority: "High",
     status: "In Progress",
     due: "Tomorrow",
@@ -161,7 +170,8 @@ const initialProjectTasks = [
     id: "WP-311",
     title: "Stabilize Plaid webhook retry queue on staging",
     assignee: "David Lee",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
     priority: "High",
     status: "In Review",
     due: "Thu, Dec 10",
@@ -172,7 +182,8 @@ const initialProjectTasks = [
     id: "WP-518",
     title: "Wire role-based route guards for workspace views",
     assignee: "Alex Chen",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
     priority: "Medium",
     status: "In Review",
     due: "Fri, Dec 11",
@@ -351,7 +362,9 @@ const ProjectDetails = () => {
 
       <div className="min-h-[calc(100vh-7.5rem)] surface-level-0 text-text-main selection:bg-brand-orange selection:text-white">
         <main className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 py-6 flex flex-col gap-6">
-          {/* BREADCRUMB & PROJECT TELEMETRY HEADER */}
+          {/* =========================================================
+              1. BREADCRUMB & PROJECT TELEMETRY HEADER
+             ========================================================= */}
           <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 sm:p-6 border border-outline-variant/40 shadow-level-2 flex flex-col gap-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <button
@@ -437,206 +450,217 @@ const ProjectDetails = () => {
                     />
                   </div>
                 ) : (
-                  <SecondaryBtn
-                    type="button"
-                    onClick={() =>
-                      setTaskFilter((prev) =>
-                        prev === "mine" ? "all" : "mine"
-                      )
-                    }
-                    text={
-                      taskFilter === "mine"
-                        ? "Showing My Tasks"
-                        : "Filter My Tasks"
-                    }
-                    icon={<FaBolt className="text-xs text-brand-orange" />}
-                    position="left"
-                    className="px-4 py-2.5 rounded-xl text-label-md"
-                  />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-xs font-mono text-text-muted">
+                    <FaUserCheck className="text-brand-cyan text-sm" />
+                    <span>Contributor Mode • Update Assigned Tasks</span>
+                  </div>
                 )}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-outline-variant/30 flex flex-col gap-2">
-              <div className="flex items-center justify-between text-xs font-mono">
+            {/* Sprint Progress & Lead Telemetry Strip */}
+            <div className="pt-4 border-t border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4 text-body-sm">
                 <span className="text-text-muted">
-                  SPRINT DELIVERABLE COMPLETION ({completedCount}/{tasks.length}{" "}
-                  TASKS)
+                  Project Lead:{" "}
+                  <strong className="text-text-main font-semibold">
+                    {projectMeta.lead}
+                  </strong>
                 </span>
-                <span className="text-brand-orange font-bold">
-                  {progressPct}%
+                <span className="text-text-placeholder hidden sm:inline">•</span>
+                <span className="text-text-muted font-mono text-xs">
+                  {completedCount} of {tasks.length} Tasks Completed
                 </span>
               </div>
-              <div className="w-full h-2 rounded-full bg-card dark:bg-surface-container-highest overflow-hidden">
-                <div
-                  style={{ width: `${progressPct}%` }}
-                  className="h-full rounded-full bg-gradient-to-r from-brand-orange to-brand-emerald transition-all duration-500"
-                />
+
+              <div className="flex items-center gap-3 w-full sm:w-72">
+                <div className="flex-1 h-2 rounded-full bg-card dark:bg-surface-container-highest overflow-hidden">
+                  <div
+                    style={{ width: `${progressPct}%` }}
+                    className="h-full rounded-full bg-gradient-to-r from-brand-orange to-brand-emerald transition-all duration-500"
+                  />
+                </div>
+                <span className="text-xs font-mono font-bold text-text-main w-10 text-right">
+                  {progressPct}%
+                </span>
               </div>
             </div>
           </section>
 
-          {/* 12-COLUMN PROJECT WORKBENCH */}
+          {/* =========================================================
+              2. MAIN 12-COLUMN WORKSPACE GRID
+             ========================================================= */}
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
-            {/* LEFT / MAIN BOARD AREA (8 COLS) */}
+            {/* LEFT 8 COLUMNS: TASK BOARD / LIST */}
             <div className="xl:col-span-8 flex flex-col gap-5">
-              <div className="bg-panel dark:bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-level-2 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex flex-wrap items-center gap-1.5 bg-card/70 dark:bg-surface-container-lowest p-1 rounded-xl border border-outline-variant/30">
-                  {[
-                    { id: "all", label: "All Tasks" },
-                    { id: "mine", label: "Assigned to Me" },
-                    { id: "high", label: "High Priority" },
-                  ].map((tab) => (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      onClick={() => setTaskFilter(tab.id)}
-                      className={`px-3 py-1.5 rounded-lg text-label-md transition-colors cursor-pointer ${taskFilter === tab.id
-                          ? "bg-panel dark:bg-surface-container-high text-brand-orange font-semibold shadow-xs"
-                          : "text-text-muted hover:text-text-main"
-                        }`}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
+              {/* Filter & View Switcher Bar */}
+              <div className="bg-panel dark:bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-level-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div className="relative flex-1 flex items-center">
+                  <FaSearch className="absolute left-3.5 text-text-muted text-xs pointer-events-none" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Filter project tasks by ID, title, or engineer..."
+                    className="input-kinetic pl-9 bg-surface-container-lowest h-9 text-body-sm"
+                  />
                 </div>
 
-                <div className="flex items-center gap-2.5 flex-1 sm:flex-initial justify-end">
-                  <div className="relative flex items-center min-w-[190px]">
-                    <FaSearch className="absolute left-3 text-text-muted text-xs pointer-events-none" />
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Filter #WP-ID or assignee..."
-                      className="input-kinetic pl-8 h-9 text-body-sm bg-surface-container-lowest"
-                    />
+                <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2">
+                  {/* Quick Filter Pills */}
+                  <div className="inline-flex items-center bg-surface-container-lowest p-1 rounded-xl border border-outline-variant/30">
+                    {[
+                      { id: "all", label: "All" },
+                      { id: "mine", label: "My Tasks" },
+                      { id: "high", label: "High Priority" },
+                    ].map((tab) => (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setTaskFilter(tab.id)}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer ${taskFilter === tab.id
+                          ? "bg-panel dark:bg-surface-container-high text-brand-orange font-semibold shadow-xs"
+                          : "text-text-muted hover:text-text-main"
+                          }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
                   </div>
 
-                  <div className="inline-flex items-center bg-card/80 dark:bg-surface-container-lowest p-1 rounded-xl border border-outline-variant/30">
+                  {/* Kanban / List Switcher */}
+                  <div className="inline-flex items-center bg-surface-container-lowest p-1 rounded-xl border border-outline-variant/30">
                     <button
                       type="button"
                       onClick={() => setBoardMode("kanban")}
-                      title="Kanban Board"
-                      className={`p-2 rounded-lg text-xs transition-colors cursor-pointer ${boardMode === "kanban"
-                          ? "bg-panel dark:bg-surface-container-high text-brand-orange shadow-xs"
-                          : "text-text-muted hover:text-text-main"
+                      title="Kanban View"
+                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${boardMode === "kanban"
+                        ? "bg-panel dark:bg-surface-container-high text-brand-orange shadow-xs"
+                        : "text-text-muted hover:text-text-main"
                         }`}
                     >
-                      <FaColumns />
+                      <FaColumns className="text-sm" />
                     </button>
                     <button
                       type="button"
                       onClick={() => setBoardMode("list")}
                       title="List View"
-                      className={`p-2 rounded-lg text-xs transition-colors cursor-pointer ${boardMode === "list"
-                          ? "bg-panel dark:bg-surface-container-high text-brand-orange shadow-xs"
-                          : "text-text-muted hover:text-text-main"
+                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${boardMode === "list"
+                        ? "bg-panel dark:bg-surface-container-high text-brand-orange shadow-xs"
+                        : "text-text-muted hover:text-text-main"
                         }`}
                     >
-                      <FaListUl />
+                      <FaListUl className="text-sm" />
                     </button>
                   </div>
                 </div>
               </div>
 
+              {/* KANBAN VIEW */}
               {boardMode === "kanban" ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {statusColumns.map((columnStatus) => {
-                    const columnTasks = filteredTasks.filter(
-                      (t) => t.status === columnStatus
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  {statusColumns.map((colStatus) => {
+                    const colTasks = filteredTasks.filter(
+                      (t) => t.status === colStatus
                     );
+
                     return (
                       <div
-                        key={columnStatus}
-                        className="bg-panel dark:bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-level-2 flex flex-col gap-3 min-h-[380px]"
+                        key={colStatus}
+                        className="bg-panel dark:bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-level-2 flex flex-col gap-3.5 min-h-[380px]"
                       >
-                        <div className="flex items-center justify-between pb-2 border-b border-outline-variant/30">
-                          <span
-                            className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold ${getBadgeClass(
-                              columnStatus
-                            )}`}
-                          >
-                            {columnStatus}
-                          </span>
-                          <span className="text-xs font-mono text-text-muted font-bold">
-                            {columnTasks.length}
+                        <div className="flex items-center justify-between pb-2.5 border-b border-outline-variant/30">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`w-2 h-2 rounded-full ${colStatus === "Completed"
+                                ? "bg-brand-emerald"
+                                : colStatus === "In Review"
+                                  ? "bg-brand-cyan"
+                                  : "bg-brand-orange"
+                                }`}
+                            />
+                            <h2 className="text-label-lg font-bold text-text-main">
+                              {colStatus}
+                            </h2>
+                          </div>
+                          <span className="px-2 py-0.5 rounded-full bg-card dark:bg-surface-container-highest text-[11px] font-mono font-bold text-text-muted">
+                            {colTasks.length}
                           </span>
                         </div>
 
                         <div className="flex flex-col gap-3">
-                          {columnTasks.map((task) => {
-                            const canModify =
-                              isManager || task.isMine;
-                            return (
-                              <div
-                                key={task.id}
-                                className={`bg-card/60 dark:bg-surface-container-low rounded-xl p-3.5 border border-outline-variant/40 shadow-xs card-kinetic-interactive flex flex-col gap-3 ${task.priority === "High" &&
-                                    task.status !== "Completed"
-                                    ? "priority-bar-left"
-                                    : ""
-                                  }`}
-                              >
-                                <div className="flex items-center justify-between gap-2">
-                                  <div className="flex items-center gap-1.5">
-                                    <span className="text-xs font-mono font-bold text-brand-orange">
-                                      #{task.id}
+                          {colTasks.length > 0 ? (
+                            colTasks.map((task) => {
+                              const canModify = isManager || task.isMine;
+
+                              return (
+                                <div
+                                  key={task.id}
+                                  className="card-kinetic card-kinetic-interactive bg-card/60 dark:bg-surface-container-low p-4 flex flex-col gap-3"
+                                >
+                                  <div className="flex items-center justify-between gap-2">
+                                    <div className="flex items-center gap-1.5">
+                                      <span
+                                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${task.priority === "High"
+                                          ? "bg-error/15 text-error border border-error/30"
+                                          : "bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30"
+                                          }`}
+                                      >
+                                        {task.priority === "High" && (
+                                          <FaExclamationTriangle className="text-[9px]" />
+                                        )}
+                                        {task.priority}
+                                      </span>
+                                      <span className="text-xs font-mono text-text-muted font-semibold">
+                                        #{task.id}
+                                      </span>
+                                    </div>
+
+                                    <span className="text-[11px] font-mono text-brand-cyan bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant/30">
+                                      {task.prRef}
                                     </span>
-                                    {task.isMine && (
-                                      <span className="px-1.5 py-0.2 rounded bg-brand-cyan/15 text-brand-cyan text-[10px] font-mono font-semibold">
-                                        YOU
+                                  </div>
+
+                                  <h3 className="text-body-md font-bold text-text-main leading-snug">
+                                    {task.title}
+                                  </h3>
+
+                                  <div className="pt-2 border-t border-outline-variant/25 flex items-center justify-between gap-2">
+                                    <div className="flex items-center gap-2 min-w-0">
+                                      <img
+                                        src={task.avatar}
+                                        alt={task.assignee}
+                                        className="w-6 h-6 rounded-full object-cover shrink-0"
+                                      />
+                                      <span className="text-xs text-text-muted truncate">
+                                        {task.assignee}
+                                      </span>
+                                    </div>
+
+                                    {canModify ? (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleCycleStatus(task)}
+                                        className="px-2.5 py-1 rounded bg-brand-orange/15 hover:bg-brand-orange text-brand-orange hover:text-white text-[10px] font-mono font-bold transition-colors cursor-pointer shrink-0"
+                                      >
+                                        Advance →
+                                      </button>
+                                    ) : (
+                                      <span
+                                        title="Only the assigned engineer or a manager can advance this task"
+                                        className="inline-flex items-center gap-1 text-[10px] font-mono text-text-placeholder"
+                                      >
+                                        <FaLock className="text-[9px]" />
+                                        Locked
                                       </span>
                                     )}
                                   </div>
-                                  <span className="text-[11px] font-mono text-brand-cyan">
-                                    {task.prRef}
-                                  </span>
                                 </div>
-
-                                <p className="text-body-md font-semibold text-text-main leading-snug">
-                                  {task.title}
-                                </p>
-
-                                <div className="flex items-center justify-between pt-2 border-t border-outline-variant/25">
-                                  <div className="flex items-center gap-2">
-                                    <img
-                                      src={task.avatar}
-                                      alt={task.assignee}
-                                      className="w-6 h-6 rounded-full object-cover"
-                                    />
-                                    <span className="text-xs text-text-muted truncate max-w-[90px]">
-                                      {task.assignee}
-                                    </span>
-                                  </div>
-
-                                  {canModify ? (
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        handleCycleStatus(task)
-                                      }
-                                      title="Advance task stage"
-                                      className="px-2 py-1 rounded bg-panel dark:bg-surface-container-high border border-outline-variant/40 hover:border-brand-orange text-[10px] font-mono text-text-main hover:text-brand-orange transition-colors cursor-pointer inline-flex items-center gap-1"
-                                    >
-                                      <span>Advance</span>
-                                      <FaArrowRight className="text-[8px]" />
-                                    </button>
-                                  ) : (
-                                    <span
-                                      title="Assigned to teammate"
-                                      className="text-text-placeholder text-xs flex items-center gap-1 font-mono"
-                                    >
-                                      <FaLock className="text-[10px]" />
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                          })}
-
-                          {columnTasks.length === 0 && (
-                            <div className="py-10 text-center text-body-sm text-text-placeholder font-mono border border-dashed border-outline-variant/30 rounded-xl">
-                              No tasks in stage
+                              );
+                            })
+                          ) : (
+                            <div className="py-8 px-3 text-center rounded-xl border border-dashed border-outline-variant/40 text-xs text-text-muted">
+                              No tasks in {colStatus}
                             </div>
                           )}
                         </div>
@@ -645,93 +669,156 @@ const ProjectDetails = () => {
                   })}
                 </div>
               ) : (
-                <div className="bg-panel dark:bg-surface-container rounded-2xl border border-outline-variant/40 shadow-level-2 overflow-hidden divide-y divide-outline-variant/30">
-                  {filteredTasks.map((task) => {
-                    const canModify = isManager || task.isMine;
-                    const isDone = task.status === "Completed";
-                    return (
-                      <div
-                        key={task.id}
-                        className={`p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 table-row-kinetic ${task.priority === "High" && !isDone
-                            ? "priority-bar-left"
-                            : ""
-                          }`}
-                      >
-                        <div className="flex items-start sm:items-center gap-3 min-w-0">
-                          {canModify ? (
-                            <div className="relative flex items-center justify-center shrink-0">
-                              <input
-                                type="checkbox"
-                                checked={isDone}
-                                onChange={() =>
-                                  handleCycleStatus(task)
-                                }
-                                className="peer checkbox-kinetic"
-                              />
-                              <FaCheck className="absolute text-[9px] text-white opacity-0 peer-checked:opacity-100 pointer-events-none" />
-                            </div>
-                          ) : (
-                            <span className="w-[18px] h-[18px] rounded bg-card dark:bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-text-placeholder shrink-0">
-                              <FaLock className="text-[9px]" />
-                            </span>
-                          )}
+                /* LIST VIEW */
+                <div className="bg-panel dark:bg-surface-container rounded-2xl border border-outline-variant/40 shadow-level-2 overflow-hidden divide-y divide-outline-variant/25">
+                  {filteredTasks.length > 0 ? (
+                    filteredTasks.map((task) => {
+                      const canModify = isManager || task.isMine;
 
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-xs font-mono font-bold text-brand-orange">
-                                #{task.id}
-                              </span>
-                              <p
-                                className={`text-body-md font-semibold truncate ${isDone
-                                    ? "line-through text-text-muted"
-                                    : "text-text-main"
-                                  }`}
-                              >
+                      return (
+                        <div
+                          key={task.id}
+                          className="p-4 table-row-kinetic flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                        >
+                          <div className="flex items-start sm:items-center gap-3 min-w-0">
+                            <span className="px-2 py-0.5 rounded bg-brand-orange/15 text-brand-orange font-mono text-xs font-bold shrink-0">
+                              #{task.id}
+                            </span>
+                            <div className="min-w-0">
+                              <h3 className="text-body-md font-bold text-text-main truncate">
                                 {task.title}
-                              </p>
+                              </h3>
+                              <div className="flex items-center gap-2 text-xs text-text-muted mt-0.5">
+                                <span>{task.assignee}</span>
+                                <span>•</span>
+                                <span className="font-mono text-brand-cyan">
+                                  {task.prRef}
+                                </span>
+                                <span>•</span>
+                                <span className="font-mono">{task.due}</span>
+                              </div>
                             </div>
-                            <p className="text-body-sm text-text-muted mt-0.5">
-                              {task.assignee} • {task.prRef} • Due{" "}
-                              {task.due}
-                            </p>
+                          </div>
+
+                          <div className="flex items-center gap-2.5 self-end sm:self-center shrink-0">
+                            <span
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold ${getBadgeClass(
+                                task.status
+                              )}`}
+                            >
+                              {task.status}
+                            </span>
+
+                            {canModify ? (
+                              <button
+                                type="button"
+                                onClick={() => handleCycleStatus(task)}
+                                className="px-3 py-1 rounded-lg bg-card hover:bg-brand-orange text-text-main hover:text-white text-xs font-mono font-semibold transition-colors cursor-pointer"
+                              >
+                                Cycle Status
+                              </button>
+                            ) : (
+                              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-lowest text-text-placeholder text-xs font-mono">
+                                <FaLock className="text-[10px]" /> Read-only
+                              </span>
+                            )}
                           </div>
                         </div>
-
-                        <div className="flex items-center gap-2.5 shrink-0">
-                          {task.priority === "High" && !isDone && (
-                            <span className="px-2 py-0.5 rounded bg-error/15 text-error border border-error/30 text-[10px] font-mono font-bold uppercase flex items-center gap-1">
-                              <FaExclamationTriangle className="text-[9px]" />
-                              High
-                            </span>
-                          )}
-                          <span
-                            className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold ${getBadgeClass(
-                              task.status
-                            )}`}
-                          >
-                            {task.status}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  ) : (
+                    <div className="p-8 text-center text-text-muted text-body-md">
+                      No matching tasks found for this filter.
+                    </div>
+                  )}
                 </div>
               )}
             </div>
 
-            {/* RIGHT SIDEBAR: MILESTONES, CONTRIBUTORS & TELEMETRY (4 COLS) */}
+            {/* RIGHT 4 COLUMNS: SQUAD ROSTER, MILESTONES & TELEMETRY */}
             <aside className="xl:col-span-4 flex flex-col gap-6">
-              {/* Release Milestones */}
+              {/* 1. Project Squad Roster */}
               <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <FaFolderOpen className="text-brand-orange text-sm" />
+                    <FaUsers className="text-brand-orange text-base" />
+                    <h2 className="text-title-md font-bold text-text-main">
+                      Project Squad ({projectSquad.length})
+                    </h2>
+                  </div>
+
+                  {isManager && (
+                    <button
+                      type="button"
+                      onClick={() => setIsMemberModalOpen(true)}
+                      className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-brand-orange hover:underline cursor-pointer"
+                    >
+                      <FaPlus className="text-[10px]" />
+                      <span>Add</span>
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {projectSquad.map((member) => (
+                    <div
+                      key={member.id}
+                      className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between gap-3"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="relative shrink-0">
+                          <img
+                            src={member.avatar}
+                            alt={member.name}
+                            className="w-9 h-9 rounded-full object-cover"
+                          />
+                          <span
+                            className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-panel dark:border-surface-container ${member.online
+                              ? "bg-brand-emerald"
+                              : "bg-text-placeholder"
+                              }`}
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-body-sm font-bold text-text-main truncate">
+                            {member.name}
+                          </p>
+                          <p className="text-xs text-text-muted truncate">
+                            {member.role} •{" "}
+                            <span className="font-mono text-brand-cyan">
+                              {member.task}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+
+                      {isManager && projectSquad.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveMember(member.id)}
+                          title={`Remove ${member.name} from project`}
+                          className="p-1.5 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-colors cursor-pointer shrink-0"
+                        >
+                          <FaUserMinus className="text-xs" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* 2. Deliverable Milestones */}
+              <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <FaBolt className="text-brand-orange text-sm" />
                     <h2 className="text-title-md font-bold text-text-main">
                       Release Milestones
                     </h2>
                   </div>
                   <span className="text-xs font-mono text-brand-emerald font-semibold">
-                    2 / 4 Verified
+                    {milestones.filter((m) => m.done).length}/{milestones.length}{" "}
+                    Verified
                   </span>
                 </div>
 
@@ -739,25 +826,25 @@ const ProjectDetails = () => {
                   {milestones.map((ms) => (
                     <div
                       key={ms.id}
-                      className="p-3 rounded-xl bg-card/50 dark:bg-surface-container-low border border-outline-variant/30 flex items-center justify-between gap-3"
+                      className="flex items-center justify-between gap-3 p-3 rounded-xl bg-surface-container-low border border-outline-variant/30"
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
                         <FaCheckCircle
                           className={`text-sm shrink-0 ${ms.done
-                              ? "text-brand-emerald"
-                              : "text-text-placeholder"
+                            ? "text-brand-emerald"
+                            : "text-text-placeholder"
                             }`}
                         />
                         <span
-                          className={`text-body-sm font-medium truncate ${ms.done
-                              ? "text-text-main"
-                              : "text-text-muted"
+                          className={`text-body-sm truncate ${ms.done
+                            ? "line-through text-text-muted"
+                            : "text-text-main font-medium"
                             }`}
                         >
                           {ms.title}
                         </span>
                       </div>
-                      <span className="text-[11px] font-mono text-text-muted shrink-0">
+                      <span className="text-xs font-mono text-text-muted shrink-0">
                         {ms.date}
                       </span>
                     </div>
@@ -765,170 +852,105 @@ const ProjectDetails = () => {
                 </div>
               </section>
 
-              {/* =========================================================
-                                PROJECT CONTRIBUTORS SECTION (WITH ADD/REMOVE FOR MANAGERS)
-                               ========================================================= */}
-              <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <FaUsers className="text-brand-orange text-sm" />
-                    <h3 className="text-title-md font-bold text-text-main">
-                      Project Contributors
-                    </h3>
-                  </div>
-                  <span className="px-2 py-0.5 rounded-full bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30 text-[11px] font-mono font-bold">
-                    {projectSquad.filter((m) => m.online).length} Active Now
-                  </span>
+              {/* 3. Quick Telemetry & Project Assets */}
+              <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <FaTerminal className="text-brand-cyan text-sm" />
+                  <h2 className="text-title-md font-bold text-text-main">
+                    Project Artifacts
+                  </h2>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  {projectSquad.map((person) => (
-                    <div
-                      key={person.id}
-                      className="flex items-center justify-between gap-3 p-3 rounded-xl bg-card/50 dark:bg-surface-container-low border border-outline-variant/30 hover:border-brand-orange/40 transition-colors"
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <div className="relative shrink-0">
-                          <img
-                            src={person.avatar}
-                            alt={person.name}
-                            className="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container-highest"
-                          />
-                          <span
-                            className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-panel dark:border-surface-container ${person.online
-                                ? "bg-brand-emerald"
-                                : "bg-text-placeholder"
-                              }`}
-                          />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-label-lg text-text-main font-bold truncate leading-tight">
-                            {person.name}
-                          </p>
-                          <p className="text-body-sm text-text-muted truncate mt-0.5">
-                            {person.role}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 shrink-0">
-                        <span className="px-2 py-0.5 rounded bg-brand-orange/15 text-brand-orange border border-brand-orange/30 text-[11px] font-mono font-semibold">
-                          {person.task}
-                        </span>
-
-                        {isManager && (
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveMember(person.id)}
-                            title={`Remove ${person.name} from project`}
-                            className="p-1.5 rounded-lg text-text-muted hover:text-error hover:bg-error/10 transition-colors cursor-pointer"
-                          >
-                            <FaUserMinus className="text-xs" />
-                          </button>
-                        )}
-                      </div>
+                <button
+                  type="button"
+                  onClick={() => navigate(`/work-space/${workspaceId}/files`)}
+                  className="w-full p-3 rounded-xl bg-surface-container-low hover:bg-card border border-outline-variant/30 flex items-center justify-between text-left transition-colors cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center">
+                      <FaRegFileAlt className="text-sm" />
                     </div>
-                  ))}
-                </div>
-
-                {isManager && (
-                  <SecondaryBtn
-                    type="button"
-                    onClick={() => setIsMemberModalOpen(true)}
-                    text="Add Contributor"
-                    icon={<FaUserPlus className="text-xs text-brand-cyan" />}
-                    position="left"
-                    className="w-full py-2.5 rounded-xl text-label-md"
-                  />
-                )}
-              </section>
-
-              {/* Git & CI/CD Telemetry */}
-              <section className="bg-panel dark:bg-surface-container rounded-2xl p-5 border border-outline-variant/40 shadow-level-2 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <FaTerminal className="text-brand-cyan text-sm" />
-                    <h2 className="text-title-md font-bold text-text-main">
-                      Repository Telemetry
-                    </h2>
+                    <div>
+                      <p className="text-body-sm font-semibold text-text-main group-hover:text-brand-orange transition-colors">
+                        Architecture &amp; Spec Docs
+                      </p>
+                      <p className="text-xs text-text-muted">
+                        Browse shared repository files
+                      </p>
+                    </div>
                   </div>
-                  <span className="badge-completed text-label-caps px-2 py-0.5 rounded">
-                    CI PASSING
-                  </span>
-                </div>
+                  <FaArrowRight className="text-xs text-text-muted group-hover:translate-x-1 transition-transform" />
+                </button>
 
-                <div className="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex flex-col gap-2 font-mono text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">BRANCH</span>
-                    <span className="text-brand-cyan font-semibold">
-                      {projectMeta.branch}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">OPEN PRS</span>
-                    <span className="text-text-main font-semibold">
-                      4 Active Reviews
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">TEST COVERAGE</span>
-                    <span className="text-brand-emerald font-semibold">
-                      94.2%
-                    </span>
-                  </div>
-                </div>
-
-                <SecondaryBtn
+                <button
                   type="button"
                   onClick={() =>
-                    navigate(`/work-space/${workspaceId}/files`)
+                    navigate(`/work-space/${workspaceId}/projects`)
                   }
-                  text="View Project Specs & Files"
-                  icon={<FaRegFileAlt className="text-xs text-brand-orange" />}
-                  position="left"
-                  className="w-full py-2.5 rounded-xl text-label-md"
-                />
+                  className="w-full p-3 rounded-xl bg-surface-container-low hover:bg-card border border-outline-variant/30 flex items-center justify-between text-left transition-colors cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-brand-orange/15 text-brand-orange flex items-center justify-center">
+                      <FaFolderOpen className="text-sm" />
+                    </div>
+                    <div>
+                      <p className="text-body-sm font-semibold text-text-main group-hover:text-brand-orange transition-colors">
+                        All Workspace Projects
+                      </p>
+                      <p className="text-xs text-text-muted">
+                        Switch active project board
+                      </p>
+                    </div>
+                  </div>
+                  <FaArrowRight className="text-xs text-text-muted group-hover:translate-x-1 transition-transform" />
+                </button>
               </section>
             </aside>
           </div>
         </main>
 
-        {/* MANAGER ASSIGN TASK MODAL */}
-        {isManager && isAssignModalOpen && (
+        {/* =========================================================
+            3. MANAGER MODAL: ASSIGN NEW TASK
+           ========================================================= */}
+        {isAssignModalOpen && isManager && (
           <div
             onClick={(e) => {
               if (e.target === e.currentTarget) setIsAssignModalOpen(false);
             }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
           >
-            <div className="w-full max-w-[40vw] bg-panel dark:bg-surface-container border border-outline-variant/40 rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-brand-orange/15 border border-brand-orange/30 text-brand-orange flex items-center justify-center">
-                    <FaUserCheck className="text-sm" />
+            <div className="relative w-full max-w-[40vw] bg-surface-container border border-outline-variant/40 rounded-2xl shadow-2xl overflow-hidden">
+              <div className="px-6 pt-6 pb-4 flex items-center justify-between border-b border-outline-variant/30">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-brand-orange/15 border border-brand-orange/30 text-brand-orange flex items-center justify-center">
+                    <FaPlus className="text-sm" />
                   </div>
                   <div>
-                    <h3 className="text-headline-sm text-text-main font-bold">
+                    <h3 className="text-headline-sm font-bold text-on-surface">
                       Assign Task to {projectMeta.code}
                     </h3>
-                    <p className="text-body-sm text-text-muted">
-                      {projectMeta.name}
+                    <p className="text-body-sm text-on-surface-variant">
+                      Dispatch a new sprint deliverable to this project board.
                     </p>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsAssignModalOpen(false)}
-                  className="text-text-muted hover:text-text-main p-1 cursor-pointer"
+                  className="text-on-surface-variant hover:text-on-surface p-1.5 rounded-lg cursor-pointer"
                 >
                   <FaTimes />
                 </button>
               </div>
 
-              <form onSubmit={handleAssignSubmit} className="flex flex-col gap-4">
+              <form
+                onSubmit={handleAssignSubmit}
+                className="p-6 flex flex-col gap-4"
+              >
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-label-md text-text-main">
-                    Task Deliverable <span className="text-brand-orange">*</span>
+                  <label className="text-label-md text-on-surface">
+                    Task Deliverable Title{" "}
+                    <span className="text-brand-orange">*</span>
                   </label>
                   <input
                     type="text"
@@ -936,21 +958,21 @@ const ProjectDetails = () => {
                     required
                     value={values.taskTitle}
                     onChange={handleChange}
-                    placeholder="e.g. Add webhook signature verification middleware"
-                    className="input-kinetic"
+                    placeholder="e.g. Add biometric fallback validation"
+                    className="input-kinetic bg-surface-container-lowest"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-label-md text-text-main">
-                      Assign To Contributor
+                    <label className="text-label-md text-on-surface">
+                      Assignee
                     </label>
                     <select
                       name="taskAssignee"
                       value={values.taskAssignee}
                       onChange={handleChange}
-                      className="input-kinetic"
+                      className="input-kinetic bg-surface-container-lowest"
                     >
                       {projectSquad.map((m) => (
                         <option key={m.id} value={m.name}>
@@ -961,65 +983,66 @@ const ProjectDetails = () => {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-label-md text-text-main">
-                      Priority
+                    <label className="text-label-md text-on-surface">
+                      Priority Level
                     </label>
                     <select
                       name="taskPriority"
                       value={values.taskPriority}
                       onChange={handleChange}
-                      className="input-kinetic"
+                      className="input-kinetic bg-surface-container-lowest"
                     >
-                      <option value="High">High Priority</option>
-                      <option value="Medium">Medium Priority</option>
-                      <option value="Low">Low Priority</option>
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-label-md text-text-main">
-                      Initial Stage
+                    <label className="text-label-md text-on-surface">
+                      Initial Column
                     </label>
                     <select
                       name="taskStatus"
                       value={values.taskStatus}
                       onChange={handleChange}
-                      className="input-kinetic"
+                      className="input-kinetic bg-surface-container-lowest"
                     >
-                      <option value="In Progress">In Progress</option>
-                      <option value="In Review">In Review</option>
-                      <option value="Completed">Completed</option>
+                      {statusColumns.map((col) => (
+                        <option key={col} value={col}>
+                          {col}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-label-md text-text-main">
-                      Due Window
+                    <label className="text-label-md text-on-surface">
+                      Due Target
                     </label>
                     <input
                       type="text"
                       name="taskDue"
                       value={values.taskDue}
                       onChange={handleChange}
-                      placeholder="e.g. Fri, Dec 12"
-                      className="input-kinetic"
+                      className="input-kinetic bg-surface-container-lowest"
                     />
                   </div>
                 </div>
 
-                <div className="flex items-center justify-end gap-2 pt-3 border-t border-outline-variant/30">
+                <div className="pt-4 mt-2 border-t border-outline-variant/30 flex items-center justify-end gap-2.5">
                   <GhostBtn
                     type="button"
                     onClick={() => setIsAssignModalOpen(false)}
                     text="Cancel"
-                    className="px-4 py-2 rounded-lg"
+                    className="px-4 py-2.5 rounded-lg"
                   />
                   <PrimaryBtn
                     type="submit"
-                    text="Dispatch Task"
-                    icon={<FaPlus className="text-xs" />}
+                    text="Assign Deliverable"
+                    icon={<FaCheck className="text-xs" />}
                     position="left"
                     className="px-5 py-2.5 rounded-lg"
                   />
@@ -1030,49 +1053,52 @@ const ProjectDetails = () => {
         )}
 
         {/* =========================================================
-                    MANAGER ADD CONTRIBUTOR MODAL
-                   ========================================================= */}
-        {isManager && isMemberModalOpen && (
+            4. MANAGER MODAL: ADD CONTRIBUTOR TO PROJECT
+           ========================================================= */}
+        {isMemberModalOpen && isManager && (
           <div
             onClick={(e) => {
               if (e.target === e.currentTarget) setIsMemberModalOpen(false);
             }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
           >
-            <div className="w-full max-w-[40vw] bg-panel dark:bg-surface-container border border-outline-variant/40 rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-brand-cyan/15 border border-brand-cyan/30 text-brand-cyan flex items-center justify-center">
+            <div className="relative w-full max-w-[40vw] bg-surface-container border border-outline-variant/40 rounded-2xl shadow-2xl overflow-hidden">
+              <div className="px-6 pt-6 pb-4 flex items-center justify-between border-b border-outline-variant/30">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-brand-cyan/15 border border-brand-cyan/30 text-brand-cyan flex items-center justify-center">
                     <FaUserPlus className="text-sm" />
                   </div>
                   <div>
-                    <h3 className="text-headline-sm text-text-main font-bold">
-                      Add Contributor to {projectMeta.code}
+                    <h3 className="text-headline-sm font-bold text-on-surface">
+                      Add Project Contributor
                     </h3>
-                    <p className="text-body-sm text-text-muted">
-                      Select from workspace teammates
+                    <p className="text-body-sm text-on-surface-variant">
+                      Select a workspace member to join {projectMeta.code}.
                     </p>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsMemberModalOpen(false)}
-                  className="text-text-muted hover:text-text-main p-1 cursor-pointer"
+                  className="text-on-surface-variant hover:text-on-surface p-1.5 rounded-lg cursor-pointer"
                 >
                   <FaTimes />
                 </button>
               </div>
 
-              <form onSubmit={handleAddMemberSubmit} className="flex flex-col gap-4">
+              <form
+                onSubmit={handleAddMemberSubmit}
+                className="p-6 flex flex-col gap-4"
+              >
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-label-md text-text-main">
-                    Workspace Teammates
+                  <label className="text-label-md text-on-surface">
+                    Available Workspace Engineers
                   </label>
                   <select
                     name="selectedCandidateId"
                     value={values.selectedCandidateId}
                     onChange={handleChange}
-                    className="input-kinetic"
+                    className="input-kinetic bg-surface-container-lowest"
                   >
                     {availableWorkspaceCandidates.map((cand) => (
                       <option key={cand.id} value={cand.id}>
@@ -1082,17 +1108,17 @@ const ProjectDetails = () => {
                   </select>
                 </div>
 
-                <div className="flex items-center justify-end gap-2 pt-3 border-t border-outline-variant/30">
+                <div className="pt-4 mt-2 border-t border-outline-variant/30 flex items-center justify-end gap-2.5">
                   <GhostBtn
                     type="button"
                     onClick={() => setIsMemberModalOpen(false)}
                     text="Cancel"
-                    className="px-4 py-2 rounded-lg"
+                    className="px-4 py-2.5 rounded-lg"
                   />
                   <PrimaryBtn
                     type="submit"
-                    text="Add to Project"
-                    icon={<FaUserPlus className="text-xs" />}
+                    text="Add to Squad"
+                    icon={<FaCheck className="text-xs" />}
                     position="left"
                     className="px-5 py-2.5 rounded-lg"
                   />
