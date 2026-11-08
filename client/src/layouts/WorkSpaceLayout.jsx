@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import WorkspaceNavigation from "../workspace/shared/components/WorkspaceNavigation"
 
 const WorkSpaceLayout = () => {
@@ -6,9 +6,12 @@ const WorkSpaceLayout = () => {
     const role = "manager";
     const isWorkspaceLoading = false;
 
+    const { pathname } = useLocation()
+    const hideNavbar = pathname === "/work-space"
+
     return (
         <div className="flex flex-col">
-            <WorkspaceNavigation role={role} />
+            {!hideNavbar && <WorkspaceNavigation role={role} />}
             <Outlet context={{ role, isWorkspaceLoading }} />
         </div>
     )

@@ -26,7 +26,7 @@ const NavItem = ({ icon: Icon, label, active, ...props }) => {
 const navigations = [
   { label: "Home", icon: FaHome, path: "/dashboard" },
   { label: "Chat", icon: FaRegComments, path: "/chats" },
-  { label: "Workspace", icon: FaLayerGroup, path: "/work-space/12345" },
+  { label: "Workspace", icon: FaLayerGroup, path: "/work-space" },
   { label: "Friends", icon: FaUserFriends, path: "/friends" },
 ];
 

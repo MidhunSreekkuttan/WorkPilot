@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import {
+    FaStepBackward,
     FaCheck,
     FaClipboardList,
     FaCode,
@@ -14,22 +15,22 @@ import {
     FaUsers,
 } from "react-icons/fa";
 
-const workspaceNavigations = {
+const workspaceNavigations = (workspaceId) => ({
     manager: [
-        { label: "Overview", path: "", icon: FaThLarge },
-        { label: "Projects", path: "projects", icon: FaFolderOpen, badge: "4" },
-        { label: "Tasks", path: "tasks", icon: FaTasks, badge: "18" },
-        { label: "Members", path: "members", icon: FaUsers, badge: "7" },
-        { label: "Files", path: "files", icon: FaRegFileAlt },
-        { label: "Settings", path: "settings", icon: FaCog },
+        { label: "Overview", path: `/work-space/${workspaceId}`, icon: FaThLarge },
+        { label: "Projects", path: `/work-space/${workspaceId}/projects`, icon: FaFolderOpen, badge: "4" },
+        { label: "Tasks", path: `/work-space/${workspaceId}/tasks`, icon: FaTasks, badge: "18" },
+        { label: "Members", path: `/work-space/${workspaceId}/members`, icon: FaUsers, badge: "7" },
+        { label: "Files", path: `/work-space/${workspaceId}/files`, icon: FaRegFileAlt },
+        { label: "Settings", path: `/work-space/${workspaceId}/settings`, icon: FaCog },
     ],
     member: [
-        { label: "Overview", path: "", icon: FaThLarge },
-        { label: "Projects", path: "projects", icon: FaFolderOpen, badge: "4" },
-        { label: "My Tasks", path: "my-tasks", icon: FaClipboardList, badge: "5" },
-        { label: "Files", path: "files", icon: FaRegFileAlt },
+        { label: "Overview", path: `/work-space/${workspaceId}`, icon: FaThLarge },
+        { label: "Projects", path: `/work-space/${workspaceId}/projects`, icon: FaFolderOpen, badge: "4" },
+        { label: "My Tasks", path: `/work-space/${workspaceId}/my-tasks`, icon: FaClipboardList, badge: "5" },
+        { label: "Files", path: `/work-space/${workspaceId}/files`, icon: FaRegFileAlt },
     ],
-};
+});
 
 const activeMembers = [
     "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
@@ -39,15 +40,17 @@ const activeMembers = [
 
 const WorkspaceNavigation = ({ role = "member", workspaceName = "Dev Squad", workspaceSubtitle = "Software Development Team" }) => {
 
-    const { workspaceId = "12345" } = useParams();
+    const { workspaceId } = useParams();
     const [copied, setCopied] = useState(false);
+
+    const navigate = useNavigate()
 
     // Safely support both role="manager" and role={["manager"]}
     const normalizedRole = (Array.isArray(role) ? role[0] : role) || "member";
-    const navigations = workspaceNavigations[normalizedRole] || [];
+    const navigations = workspaceNavigations(workspaceId)[normalizedRole] || [];
     const isManager = normalizedRole === "manager";
 
-    const inviteToken = `WP-${workspaceId.toUpperCase()}`;
+    const inviteToken = `WP-${workspaceId?.toUpperCase()}`;
 
     const handleCopyInvite = async () => {
         try {
@@ -66,6 +69,14 @@ const WorkspaceNavigation = ({ role = "member", workspaceName = "Dev Squad", wor
                 <div className="py-3.5 flex flex-wrap items-center justify-between gap-4 border-b border-outline-variant/25">
                     {/* Left: Workspace Avatar, Title & Role Pill */}
                     <div className="flex items-center gap-3.5 min-w-0">
+                        <button
+                            className="flex items-center gap-1.5 text-text-muted hover:text-text-main transition-colors cursor-pointer mr-2 active:scale-95"
+                            onClick={() => navigate('/work-space')}
+                            title="Back to Workspaces"
+                        >
+                            <FaStepBackward size={18} />
+                            <span className="text-[16px] font-medium">Back</span>
+                        </button>
                         <div className="w-10 h-10 rounded-xl bg-brand-orange/15 border border-brand-orange/30 text-brand-orange flex items-center justify-center shrink-0 shadow-xs">
                             <FaCode className="text-lg" />
                         </div>
@@ -153,7 +164,7 @@ const WorkspaceNavigation = ({ role = "member", workspaceName = "Dev Squad", wor
                             <NavLink
                                 key={item.label}
                                 to={item.path || "."}
-                                end={!item.path}
+                                end={item.label === 'Overview'}
                                 className={({ isActive }) =>
                                     `group relative flex items-center gap-2 px-4 py-2.5 text-label-lg whitespace-nowrap rounded-t-lg transition-all duration-150 select-none ${isActive
                                         ? "text-brand-orange font-semibold bg-brand-orange/[0.06]"
