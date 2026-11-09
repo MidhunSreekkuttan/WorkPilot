@@ -161,3 +161,27 @@ class WorkspaceInvitation(models.Model):
         
     def __str__(self):
         return f"{self.email} - {self.workspace.name}"
+    
+class WorkspaceFile(models.Model):
+    
+    workspace = models.ForeignKey(
+        Workspace,
+        on_delete=models.CASCADE,
+        related_name="files"
+    )
+    
+    uploaded_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT
+    )
+    
+    name = models.CharField(max_length=255)
+    
+    file = models.FileField(upload_to="workspace-files/%Y/%m/")
+    
+    size_bytes = models.PositiveIntegerField(default=0)
+    
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
