@@ -32,6 +32,14 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     'corsheaders',
+    
+    # custom apps
+    'accounts',
+    'activity',
+    'notifications',
+    'projects',
+    'tasks',
+    'workspaces'
 ]
 
 MIDDLEWARE = [
