@@ -68,14 +68,16 @@ class WorkspaceCreateSerializer(serializers.ModelSerializer):
         WorkspaceMembership.objects.create(
             workspace=workspace,
             user=user,
-            role=WorkspaceMembership.role.MANAGER
+            role=WorkspaceMembership.Role.MANAGER
         )
         
         return workspace
     
 class WorkspaceUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
         model = Workspace
-        
+
         fields = [
             "name",
             "description",
