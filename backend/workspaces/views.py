@@ -186,70 +186,89 @@ class WorkspaceInvitationCreateView(APIView):
         return Response(data,status=status.HTTP_201_CREATED)
     
 class AcceptWorkspaceInvitationView(APIView):
-    permission_classes=[IsAuthenticated]
-    
+
+    permission_classes = [IsAuthenticated]
+
     @transaction.atomic
     def post(self, request):
-        
+
         serializer = AcceptInvitationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
-        token = serializer.validated_data(["token"])
-        
-        token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
-        
-        invitation = (WorkspaceInvitation.objects.select_for_update().filter(
-            token_hash=token_hash,
-            status=WorkspaceInvitation.Status.PENDING
-        ).first())
-        
+
+        token = serializer.validated_data["token"]
+
+        token_hash = hashlib.sha256(
+            token.encode("utf-8")
+        ).hexdigest()
+
+        invitation = (
+            WorkspaceInvitation.objects
+            .select_for_update()
+            .filter(
+                token_hash=token_hash,
+                status=WorkspaceInvitation.Status.PENDING
+            )
+            .first()
+        )
+
         if not invitation or invitation.expires_at <= timezone.now():
-            raise ValidationError("This invitation is invalid or has expired.")
-        
-        # Invitation must belong to the authenticated user's email.
+            raise ValidationError(
+                "This invitation is invalid or has expired."
+            )
+
         if invitation.email.casefold() != request.user.email.casefold():
-            raise PermissionDenied("This invitation belongs to another email address.")
-        
+            raise PermissionDenied(
+                "This invitation belongs to another email address."
+            )
+
         membership, created = WorkspaceMembership.objects.get_or_create(
             workspace=invitation.workspace,
             user=request.user,
             defaults={
-                "role":WorkspaceMembership.Role.MEMBER,
-                "status":WorkspaceMembership.Status.ACTIVE
+                "role": WorkspaceMembership.Role.MEMBER,
+                "status": WorkspaceMembership.Status.ACTIVE
             }
         )
-        
+
         if not created:
-            
+
             if membership.status == WorkspaceMembership.Status.LEFT:
-                
+
                 membership.status = WorkspaceMembership.Status.ACTIVE
                 membership.role = WorkspaceMembership.Role.MEMBER
                 membership.joined_at = timezone.now()
-                
+
                 membership.save(update_fields=[
-                        "status",
-                        "role",
-                        "joined_at",
+                    "status",
+                    "role",
+                    "joined_at"
                 ])
-                
+
             elif membership.status == WorkspaceMembership.Status.SUSPENDED:
-                
-                raise PermissionDenied("Your membership in this workspace is suspended.")
-            
+
+                raise PermissionDenied(
+                    "Your membership in this workspace is suspended."
+                )
+
             else:
-                raise ValidationError("You are already a member of this workspace.")
-            
-            invitation.status = WorkspaceInvitation.Status.ACCEPTED
-            invitation.accepted_at = timezone.now()
-            
-            invitation.save(update_fields=["status", "accepted_at"])
-            
-            return Response(
-                {
+                raise ValidationError(
+                    "You are already a member of this workspace."
+                )
+
+        # Mark invitation as accepted (new and existing membership).
+        invitation.status = WorkspaceInvitation.Status.ACCEPTED
+        invitation.accepted_at = timezone.now()
+
+        invitation.save(update_fields=[
+            "status",
+            "accepted_at"
+        ])
+
+        return Response(
+            {
                 "message": "You successfully joined the workspace.",
-                "workspace":WorkspaceSerializer(invitation.workspace).data,
-                "role":membership.role
-                },
-                status=status.HTTP_200_OK
-            )
+                "workspace": WorkspaceSerializer(invitation.workspace).data,
+                "role": membership.role
+            },
+            status=status.HTTP_200_OK
+        )

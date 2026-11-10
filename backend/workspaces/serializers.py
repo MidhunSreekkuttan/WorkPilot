@@ -134,7 +134,7 @@ class WorkspaceMemberSerializer(serializers.ModelSerializer):
             "joined_at",
         ]
         
-class AcceptInvitationSerializer(serializers.ModelSerializer):
+class AcceptInvitationSerializer(serializers.Serializer):
     
     token = serializers.CharField(max_length=128, trim_whitespace=True)
     
