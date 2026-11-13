@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import (
     WorkspaceListCreateView,
@@ -18,5 +18,8 @@ urlpatterns = [
     path("<uuid:workspace_id>/members/", WorkspaceMembersView.as_view(), name="workspace-members"),
     
     # Create invitation
-    path("<uuid:workspace_id>/invitations/", WorkspaceInvitationCreateView.as_view(), name="workspace-invitation-create")
+    path("<uuid:workspace_id>/invitations/", WorkspaceInvitationCreateView.as_view(), name="workspace-invitation-create"),
+    
+    # Workspace projects
+    path("<uuid:workspace_id>/projects/", include("projects.urls"))
 ]
