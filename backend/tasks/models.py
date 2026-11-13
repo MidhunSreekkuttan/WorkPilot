@@ -81,7 +81,7 @@ class Task(models.Model):
             if self.assigned_to.workspace_id != self.project.workspace_id:
                 raise ValidationError("Assignee must belong to the task's workspace.")
             
-            is_project_member = self.project.membership.filter(membership_id = self.assigned_to_id).exist()
+            is_project_member = self.project.membership.filter(membership_id = self.assigned_to_id).exists()
             
             if not is_project_member:
                 raise ValidationError("Assignee must be a member of this project.")
