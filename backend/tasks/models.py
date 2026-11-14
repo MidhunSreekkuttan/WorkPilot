@@ -34,7 +34,7 @@ class Task(models.Model):
     
     title = models.CharField(max_length=200)
     
-    description = models.CharField(blank=True)
+    description = models.TextField(blank=True)
     
     assigned_to = models.ForeignKey(
         "workspaces.WorkspaceMembership",
@@ -81,7 +81,7 @@ class Task(models.Model):
             if self.assigned_to.workspace_id != self.project.workspace_id:
                 raise ValidationError("Assignee must belong to the task's workspace.")
             
-            is_project_member = self.project.membership.filter(membership_id = self.assigned_to_id).exists()
+            is_project_member = self.project.memberships.filter(membership_id = self.assigned_to_id).exists()
             
             if not is_project_member:
                 raise ValidationError("Assignee must be a member of this project.")
@@ -107,7 +107,7 @@ class TaskAttachment(models.Model):
         on_delete=models.PROTECT
     )
     
-    file = models.FileField(upload_to="task-attachments/%Y/%m/")
+    file_data = models.BinaryField(editable=False)
     
     original_filename = models.CharField(max_length=255)
     content_type = models.CharField(max_length=100, blank=True)
