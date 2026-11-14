@@ -9,7 +9,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import (
     SignupSerializer,
     UserSerializer,
-    LoginSerializer
+    LoginSerializer,
+    GoogleAuthSerializer
 )
 
 # Create your views here.
@@ -40,5 +41,27 @@ class SignupView(APIView):
 class LoginView(TokenObtainPairView):
     
     serializer_class = LoginSerializer
-    
     permission_classes = [AllowAny]
+    
+class GoogleLoginView(APIView):
+    permission_classes=[AllowAny]
+    
+    def post(self, request):
+        serializer = GoogleAuthSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        user = serializer.validated_data["user"]
+        created = serializer.validated_data["created"]
+        
+        refresh = RefreshToken.for_user(user)
+        
+        return Response(
+            {
+               "message": "Google authentication successful.",
+               "access": str(refresh.access_token),
+               "refresh": str(refresh),
+               "user": UserSerializer(user).data,
+               "is_new_user": created
+            },
+            status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        )

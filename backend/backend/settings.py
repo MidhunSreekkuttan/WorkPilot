@@ -18,6 +18,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID", "")
+
 
 # Application definition
 
