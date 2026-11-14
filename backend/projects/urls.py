@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import (
     ProjectListCreateView,
@@ -18,5 +18,8 @@ urlpatterns = [
     path("<uuid:project_id>/members", ProjectMembersView.as_view(), name="project-members"),
     
     # /api/workspaces/<workspace_id>/projects/<project_id>/members/<membership_id>/
-    path("<uuid:project_id>/members/<uuid:membership_id>/", ProjectMemberDetailView.as_view(), name="project-member-detail")
+    path("<uuid:project_id>/members/<uuid:membership_id>/", ProjectMemberDetailView.as_view(), name="project-member-detail"),
+    
+    # Project tasks
+    path("<uuid:project_id>/tasks/", include("tasks.urls"))
 ]
