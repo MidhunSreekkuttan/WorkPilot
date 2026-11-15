@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,6 +78,17 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ],
     
+}
+
+SIMPLE_JWT = {
+    # Increase access token lifetime (e.g., from default 5 mins to 60 mins or 1 day)
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+
+    # Optional: rotate refresh tokens automatically when /api/auth/token/refresh/ is hit
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
 }
 
 TEMPLATES = [
