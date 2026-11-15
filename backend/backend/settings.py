@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +19,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID", "")
+
+FILE_UPLOAD_HANDLERS = [
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+]
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 30 * 1024 * 1024
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 32 * 1024 * 1024
 
 # Application definition
 
@@ -57,6 +67,29 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'backend.urls'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+REST_FRAMEWORK = {
+    
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    
+}
+
+SIMPLE_JWT = {
+    # Increase access token lifetime (e.g., from default 5 mins to 60 mins or 1 day)
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+
+    # Optional: rotate refresh tokens automatically when /api/auth/token/refresh/ is hit
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
+}
 
 TEMPLATES = [
     {
@@ -120,6 +153,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+    
+    {
+        'NAME': 'accounts.validators.WorkPilotPasswordValidator',
     },
 ]
 

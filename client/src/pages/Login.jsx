@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import AxiosInstance from "../configs/AxiosInstance";
 import {
     FaArrowRight,
     FaBolt,
@@ -69,6 +72,8 @@ const GoogleIcon = () => (
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
     const { values, handleChange } = useForm({
         fullName: "",
         email: "",
@@ -79,6 +84,53 @@ const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [state, setState] = useState('login')
+    const [authError, setAuthError] = useState("");
+    const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
+    const handleGoogleSuccess = async (tokenResponse) => {
+        setAuthError("")
+        setIsGoogleLoading(true)
+
+        try {
+            const response = await AxiosInstance.post('/api/auth/google/', {
+                access_token: tokenResponse.access_token,
+            })
+
+            const data = response.data
+
+            // 3. Match the keys returned by Django (access, refresh, user)
+            localStorage.setItem("access_token", data.access);
+            localStorage.setItem("refresh_token", data.refresh);
+            localStorage.setItem("user", JSON.stringify(data.user));
+
+            // 4. Route new accounts to onboarding, returning users to dashboard
+            if (data.is_new_user) {
+                navigate("/onboarding");
+            } else {
+                navigate("/dashboard");
+            }
+
+        } catch (err) {
+            // 5. Extract DRF validation errors from err.response?.data
+            const serverError = err.response?.data;
+            const errorMsg =
+                serverError?.detail ||
+                serverError?.access_token?.[0] ||
+                serverError?.non_field_errors?.[0] ||
+                err.message ||
+                "Unable to sign in with Google.";
+
+            setAuthError(errorMsg);
+        }
+        finally {
+            setIsGoogleLoading(false)
+        }
+    }
+
+    const loginWithGoogle = useGoogleLogin({
+        onSuccess: handleGoogleSuccess,
+        onError: () => setAuthError("Google sign-in popup was closed or failed.")
+    })
 
     // Password validation & strength calculation
     const password = values.password;
@@ -325,8 +377,15 @@ const Login = () => {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         <SecondaryBtn
                                             type="button"
-                                            text="Sign up with Google"
-                                            className="w-full py-2.5 text-label-lg"
+                                            onClick={() => loginWithGoogle()}
+                                            text={
+                                                isGoogleLoading ? "Connecting to Google..." : state === "login" ? (
+                                                    "Sign in with Google"
+                                                ) : (
+                                                    "Sign up with Google"
+                                                )
+                                            }
+                                            className="w-full py-2.5 text-label-lg disabled:opacity-60"
                                             icon={<GoogleIcon />}
                                             iconHover="scale-110"
                                             position="left"
@@ -353,6 +412,12 @@ const Login = () => {
                                         </span>
                                         <div className="flex-grow h-[1px] bg-outline-variant/60" />
                                     </div>
+
+                                    {authError && (
+                                        <div className="px-4 py-2.5 rounded-lg bg-error/15 border border-error/30 text-error text-body-sm">
+                                            {authError}
+                                        </div>
+                                    )}
 
                                     {/* Registration Form Inputs */}
                                     <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
