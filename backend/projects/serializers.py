@@ -116,37 +116,37 @@ class ProjectCreateSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         start_date = attrs.get("start_date")
         due_date = attrs.get("due_date")
-        
-        if start_date and due_date and start_date < due_date:
+
+        if start_date and due_date and due_date < start_date:
             raise serializers.ValidationError({
-                "due_date" : "Due date cannot be earlier than start date."
+                "due_date": "Due date cannot be earlier than start date."
             })
-            
+
         return attrs
-    
+
     @transaction.atomic
     def create(self, validated_data):
         member_ids = validated_data.pop("member_ids", [])
         request = self.context["request"]
         creator_membership = self.context["membership"]
         workspace = creator_membership.workspace
-        
+
         project = Project.objects.create(
             workspace=workspace,
             created_by=request.user,
             **validated_data
         )
-        
+
         # Always add the creator to the project squad.
         memberships_to_add = {creator_membership.id}
         if member_ids:
             valid_ids = WorkspaceMembership.objects.filter(
                 workspace=workspace,
-                id=member_ids,
+                id__in=member_ids,
                 status=WorkspaceMembership.Status.ACTIVE
             ).values_list("id", flat=True)
             memberships_to_add.update(valid_ids)
-            
+
         ProjectMembership.objects.bulk_create([
             ProjectMembership(
                 project=project,
@@ -155,7 +155,7 @@ class ProjectCreateSerializer(serializers.ModelSerializer):
             )
             for m_id in memberships_to_add
         ])
-        
+
         return project
     
 class ProjectUpdateSerializer(serializers.ModelSerializer):

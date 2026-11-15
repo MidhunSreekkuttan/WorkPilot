@@ -22,20 +22,24 @@ from .serializers import (
 )
 
 def get_annotated_projects_queryset(workspace, current_membership):
-    
     is_member_subquery = ProjectMembership.objects.filter(
         project_id=OuterRef("pk"),
         membership=current_membership
     )
-    
+
     return (
         Project.objects.filter(workspace=workspace).select_related("created_by").annotate(
-            member_count=Count("memberships", distinct=Task),
-            tasks_total=Count("tasks", distinct=Task),
-            task_done=Count(
+            member_count=Count("memberships", distinct=True),
+            tasks_total=Count("tasks", distinct=True),
+            tasks_done=Count(
                 "tasks",
-                filter=Q(task__status=Task.Status.COMPLETED),
-                distinct=Task
+                filter=Q(tasks__status=Task.Status.COMPLETED),
+                distinct=True
+            ),
+            my_tasks_count=Count(
+                "tasks",
+                filter=Q(tasks__assigned_to=current_membership),
+                distinct=True
             ),
             is_member=Exists(is_member_subquery)
         ).order_by("-created_at")
@@ -44,27 +48,30 @@ def get_annotated_projects_queryset(workspace, current_membership):
 class ProjectListCreateView(APIView):
     permission_classes=[IsAuthenticated]
     
+class ProjectListCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, workspace_id):
         membership = get_workspace_membership(request.user, workspace_id)
         projects = get_annotated_projects_queryset(membership.workspace, membership)
-        
+
         # Optional filters (?status=active&search=gateway&mine=true)
         status_filter = request.query_params.get("status", "").strip().lower()
         if status_filter and status_filter != "all":
             projects = projects.filter(status=status_filter)
-            
-            search_query = request.query_params.get("search", "").strip()
-            if search_query:
-                projects = projects.filter(
-                    Q(name__icontains=search_query) or Q(description__icontains=search_query)
-                )
-                
-            mine_only = request.query_params.get("mine","").strip().lower()
-            if mine_only in ("true", "1"):
-                projects = projects.filter(memberships__membership=membership)
-                
-            serializer = ProjectSerializer(projects, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        search_query = request.query_params.get("search", "").strip()
+        if search_query:
+            projects = projects.filter(
+                Q(name__icontains=search_query) | Q(description__icontains=search_query)
+            )
+
+        mine_only = request.query_params.get("mine", "").strip().lower()
+        if mine_only in ("true", "1"):
+            projects = projects.filter(memberships__membership=membership)
+
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
     def post(self, request, workspace_id):
         membership = get_workspace_membership(request.user, workspace_id)
