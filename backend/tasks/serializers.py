@@ -108,7 +108,7 @@ class TaskWriteSerializer(serializers.ModelSerializer):
         
         assigned_to = validated_data.pop("assigned_to_id", None)
         
-        request = self.context("request")
+        request = self.context["request"]
         project = self.context["project"]
         
         status_value = validated_data.get("status", Task.Status.TODO)
@@ -215,7 +215,7 @@ class TaskAttachmentUploadSerializer(serializers.Serializer):
     
     MAX_FILE_SIZE = 25 * 1024 * 1024
     
-    def validate(self, value):
+    def validate_file(self, value):
         
         if value.size > self.MAX_FILE_SIZE:
             raise serializers.ValidationError("File size cannot exceed 25 MB.")

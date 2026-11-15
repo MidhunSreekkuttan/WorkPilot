@@ -111,7 +111,7 @@ class TaskListCreateView(APIView):
             tasks = tasks.filter(status=status_filter)
             
         # Priority filter
-        priority_filter = request.query_params.get("priority").strip().lower()
+        priority_filter = request.query_params.get("priority", "").strip().lower()
         
         if priority_filter and priority_filter != "all":
             tasks = tasks.filter(priority=priority_filter)
@@ -222,8 +222,8 @@ class TaskDetailView(APIView):
     def get(self, request, workspace_id, project_id, task_id):
         _, project, task = get_task_context(
             request.user,
-            project_id,
             workspace_id,
+            project_id,
             task_id
         )
             
@@ -502,10 +502,10 @@ class TaskAttachmentsView(APIView):
         attachment = TaskAttachment.objects.create(
             task=task,
             uploaded_by=request.user,
-            file=uploaded_file,
-            original_filename=filename,
-            content_type=uploaded_file.content_type or "",
-            size_bytes=len(file_data)
+            original_filename=uploaded_file.name,
+            content_type=uploaded_file.content_type or "application/octet-stream",
+            file_data=file_data,
+            size_bytes=len(file_data),
         )
         
         create_task_activity(
@@ -579,11 +579,12 @@ class TaskAttachmentDownloadView(APIView):
             task=task
         )
         
-        if not attachment.file:
+        if not attachment.file_data:
             raise ValidationError({"file": "Attachment file is unavailable."})
         
         return FileResponse(
             BytesIO(bytes(attachment.file_data)),
             as_attachment=True,
-            filename=attachment.original_filename
+            filename=attachment.original_filename,
+            content_type=attachment.content_type or "application/octet-stream",
         )

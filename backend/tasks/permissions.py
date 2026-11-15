@@ -46,7 +46,7 @@ def get_task_context(user, workspace_id, project_id, task_id):
     
     return membership, project, task
 
-def require_manager(membership, task):
+def require_manager(membership):
     if membership.role != membership.Role.MANAGER:
         raise PermissionDenied("Only workspace managers can perform this action.")
 
