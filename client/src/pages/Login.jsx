@@ -89,8 +89,13 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+
         const pageTitle = state === "login" ? "WorkPilot | Login" : "WorkPilot | Sign Up";
         document.title = pageTitle
+
+        const accessToken = localStorage.getItem("access_token")
+        if (accessToken) navigate("/dashboard", { replace: true })
+
     }, [state])
 
     const handleGoogleSuccess = async (tokenResponse) => {
