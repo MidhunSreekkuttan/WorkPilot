@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from .views import SignupView, LoginView, GoogleLoginView
+from .views import SignupView, LoginView, GoogleLoginView, AuthUser
 
 urlpatterns = [
     # Create account
@@ -14,5 +14,8 @@ urlpatterns = [
     path("google/", GoogleLoginView.as_view(), name="google-login"),
     
     # Refresh access token
-    path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh")
+    path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
+    
+    # Auth user
+    path("authUser/", AuthUser.as_view(), name="auth-user")
 ]

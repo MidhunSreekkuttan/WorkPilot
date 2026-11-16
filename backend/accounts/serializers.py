@@ -212,3 +212,19 @@ class GoogleAuthSerializer(serializers.Serializer):
             attrs["created"] = created
             
             return attrs
+        
+class AuthUserSerializer(serializers.ModelSerializer):
+   
+    full_name = serializers.SerializerMethodField()
+   
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "full_name",
+            "email"
+        ]
+        read_only_fields = fields
+        
+    def get_full_name(self, obj):
+        return obj.get_full_name() or obj.email.split("@")[0]

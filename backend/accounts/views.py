@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -10,7 +10,8 @@ from .serializers import (
     SignupSerializer,
     UserSerializer,
     LoginSerializer,
-    GoogleAuthSerializer
+    GoogleAuthSerializer,
+    AuthUserSerializer
 )
 
 # Create your views here.
@@ -64,4 +65,16 @@ class GoogleLoginView(APIView):
                "is_new_user": created
             },
             status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        )
+        
+class AuthUser(APIView):
+    permission_classes=[IsAuthenticated]
+    
+    def get(self, request):
+        
+        serializer = AuthUserSerializer(request.user)
+        
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
         )
