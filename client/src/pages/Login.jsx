@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import AxiosInstance from "../configs/AxiosInstance";
+import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 import {
     FaArrowRight,
     FaBolt,
@@ -18,7 +20,6 @@ import {
 } from "react-icons/fa";
 import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
 import useForm from "../coustom-hooks/UseForm";
-import { Helmet } from "react-helmet-async";
 
 const avatars = [
     { initials: "SJ", gradient: "from-indigo-500 to-purple-600" },
@@ -86,6 +87,7 @@ const Login = () => {
     const [state, setState] = useState('login')
     const [authError, setAuthError] = useState("");
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     const handleGoogleSuccess = async (tokenResponse) => {
         setAuthError("")
@@ -173,9 +175,89 @@ const Login = () => {
         },
     }[score];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle registration submission here
+
+        if (state === "login") {
+
+            try {
+                setLoading(true)
+
+                const { data } = await AxiosInstance.post("/api/auth/token/", {
+                    email: values.email,
+                    password: values.password
+                })
+
+                localStorage.setItem("access_token", data.access);
+                localStorage.setItem("refresh_token", data.refresh);
+                localStorage.setItem("user", JSON.stringify(data))
+
+                toast.success("Login successful!");
+
+                navigate("/dashboard", { replace: true });
+
+            } catch (error) {
+                console.log("Status:", error.response?.status);
+                console.log("Django error:", error.response?.data);
+                console.log("Request data:", {
+                    email: values.email,
+                    password: values.password ? "Provided" : "Missing"
+                });
+
+                toast.error(
+                    error.response?.data?.detail || error.message
+                );
+            }
+            finally {
+                setLoading(false)
+            }
+
+        } else {
+
+            try {
+                setLoading(true)
+
+                const { data } = await AxiosInstance.post("/api/auth/signup/", {
+                    full_name: values.fullName,
+                    email: values.email,
+                    password: values.password
+                })
+
+                if (data) setState("login")
+
+                toast.success(data?.message || "Account created successfully!");
+
+            } catch (error) {
+                console.error("Signup error:", error.response?.data);
+                const errorData = error.response?.data;
+
+                // Handle Django REST Framework validation errors
+                let errorMessage = "Unable to create account.";
+
+                if (errorData?.detail) {
+                    errorMessage = errorData.detail;
+                } else if (errorData?.message) {
+                    errorMessage = errorData.message;
+                } else if (errorData) {
+                    errorMessage = Object.entries(errorData)
+                        .map(([field, messages]) => {
+                            const message = Array.isArray(messages)
+                                ? messages.join(" ")
+                                : messages;
+
+                            return `${field}: ${message}`;
+                        })
+                        .join("\n");
+                }
+
+                toast.error(errorMessage);
+            }
+            finally {
+                setLoading(false)
+            }
+
+        }
+
     };
 
     return (
@@ -620,9 +702,14 @@ const Login = () => {
                                         {/* Primary Submit Action CTA Button */}
                                         <div className="pt-1">
                                             <PrimaryBtn
+                                                disabled={loading}
                                                 type="submit"
-                                                text={state === 'login' ? "Login to Workspace Account" : "Create Workspace Account"}
-                                                className="w-full h-11 text-base"
+                                                text={state === 'login' ? (
+                                                    loading ? "Loging to your Workspace Account ..." : "Login to Workspace Account"
+                                                ) : (
+                                                    loading ? "Creating to your Workspace Account" : "Create Workspace Account"
+                                                )}
+                                                className={`w-full h-11 text-base ${loading ? "opacity-50" : "opacity-100"} `}
                                                 icon={<FaArrowRight />}
                                                 iconHover="translate-x-5 group-hover:translate-x-20"
                                                 position="right"

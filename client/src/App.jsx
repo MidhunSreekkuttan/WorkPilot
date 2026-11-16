@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import { Suspense } from "react"
+import { ToastContainer } from 'react-toastify'
 
 import GlobalRoutes from "./routes/GlobalRoutes"
 import PageNotFound from "./components/PageNotFound"
@@ -9,6 +10,9 @@ import WorkSpaceRoutes from "./routes/WorkSpaceRoutes"
 const App = () => {
   return (
     <>
+
+      <ToastContainer />
+
       <Suspense fallback={<LoadingScreen message="Synchronizing Telemetry..." />}>
         <Routes>
 
