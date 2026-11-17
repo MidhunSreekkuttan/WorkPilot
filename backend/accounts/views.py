@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from .serializers import (
     SignupSerializer,
@@ -36,6 +36,37 @@ def set_auth_cookies(response, access_token, refresh_token):
     )
     
     return response
+
+class CookieTokenRefreshView(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        refresh_token = request.COOKIES.get("refresh_token")
+        if not refresh_token:
+            return Response(
+                {"detail": "Refresh token cookie not found."},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+            
+        serializer = self.get_serializer(data={"refresh": refresh_token})
+        serializer.is_valid(raise_exception=True)
+        
+        access_token = serializer.validated_data["access"]
+
+        new_refresh_token = serializer.validated_data.get(
+            "refresh",
+            refresh_token
+        )
+        
+        response = Response(
+            {"message": "Token refreshed successfully."},
+            status=status.HTTP_200_OK
+        )
+        
+        return set_auth_cookies(
+            response,
+            access_token,
+            new_refresh_token
+        )
+
     
 class SignupView(APIView):
     permission_classes = [AllowAny]
