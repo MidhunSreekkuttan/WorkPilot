@@ -19,6 +19,7 @@ import {
 } from "react-icons/fa";
 import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
 import useForm from "../coustom-hooks/UseForm";
+import { useGlobalUserContext } from "../context/GlobalUserContext";
 
 const avatars = [
     { initials: "SJ", gradient: "from-indigo-500 to-purple-600" },
@@ -74,6 +75,8 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const { setUserData } = useGlobalUserContext()
+
     const { values, handleChange } = useForm({
         fullName: "",
         email: "",
@@ -100,11 +103,13 @@ const Login = () => {
         setIsGoogleLoading(true)
 
         try {
-            await AxiosInstance.post('/api/auth/google/', {
+            const { data } = await AxiosInstance.post('/api/auth/google/', {
                 access_token: tokenResponse.access_token,
             })
 
-            navigate("/dashboard");
+            setUserData(data?.user)
+
+            navigate("/dashboard", { replace: true });
 
         } catch (err) {
             // 5. Extract DRF validation errors from err.response?.data
@@ -181,6 +186,8 @@ const Login = () => {
                     email: values.email,
                     password: values.password
                 })
+
+                setUserData(data?.user)
 
                 toast.success(data?.message);
 
