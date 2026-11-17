@@ -221,6 +221,7 @@ class AuthUserSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             "id",
+            "avatar_url",
             "full_name",
             "email"
         ]

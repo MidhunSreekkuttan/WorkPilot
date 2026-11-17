@@ -75,7 +75,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const { setUserData } = useGlobalUserContext()
+    const { isAuthenticated, setUserData } = useGlobalUserContext()
 
     const { values, handleChange } = useForm({
         fullName: "",
@@ -96,7 +96,9 @@ const Login = () => {
         const pageTitle = state === "login" ? "WorkPilot | Login" : "WorkPilot | Sign Up";
         document.title = pageTitle
 
-    }, [state])
+        if (isAuthenticated) return navigate('/dashboard', { replace: true })
+
+    }, [state, isAuthenticated])
 
     const handleGoogleSuccess = async (tokenResponse) => {
         setAuthError("")
