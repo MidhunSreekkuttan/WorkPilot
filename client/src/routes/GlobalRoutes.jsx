@@ -2,6 +2,8 @@ import { lazy } from "react"
 import { Route } from "react-router-dom"
 
 import GlobalLayout from "../layouts/GlobalLayout"
+import ProtectedRoute from "../configs/ProtectedRoute"
+import LazyLoad from "../configs/LazyLoad"
 
 const Landing = lazy(() => import("../pages/Landing"))
 const Login = lazy(() => import("../pages/Login"))
@@ -15,13 +17,46 @@ const GlobalRoutes = () => {
     return (
         <>
             <Route element={<GlobalLayout />}>
-                <Route path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/onboarding" element={<Onboarding />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/chats" element={<Chats />} />
-                <Route path="/friends" element={<Friends />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/login" element={
+                    <LazyLoad>
+                        <Login />
+                    </LazyLoad>
+                } />
+                <Route path="/" element={
+                    <LazyLoad>
+                        <Landing />
+                    </LazyLoad>
+                } />
+
+
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/onboarding" element={
+                        <LazyLoad>
+                            <Onboarding />
+                        </LazyLoad>
+                    } />
+                    <Route path="/dashboard" element={
+                        <LazyLoad>
+                            <Dashboard />
+                        </LazyLoad>
+                    } />
+                    <Route path="/chats" element={
+                        <LazyLoad>
+                            <Chats />
+                        </LazyLoad>
+                    } />
+                    <Route path="/friends" element={
+                        <LazyLoad>
+                            <Friends />
+                        </LazyLoad>
+                    } />
+                    <Route path="/settings" element={
+                        <LazyLoad>
+                            <Settings />
+                        </LazyLoad>
+                    } />
+                </Route>
+
             </Route>
         </>
     )

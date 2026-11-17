@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import ThemeContextProvider from './context/ThemeContext.jsx'
+import GlobalUserContextProvider from './context/GlobalUserContext.jsx'
 import './index.css'
 import App from './App.jsx'
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <HelmetProvider>
           <ThemeContextProvider>
-            <App />
+            <GlobalUserContextProvider>
+              <App />
+            </GlobalUserContextProvider>
           </ThemeContextProvider>
         </HelmetProvider>
       </BrowserRouter>

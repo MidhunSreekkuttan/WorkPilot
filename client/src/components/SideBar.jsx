@@ -7,6 +7,9 @@ import {
   FaUserFriends
 } from "react-icons/fa";
 import { NavLink } from 'react-router-dom'
+import { useGlobalUserContext } from "../context/GlobalUserContext";
+import { toast } from "react-toastify";
+import AxiosInstance from "../configs/AxiosInstance";
 
 const NavItem = ({ icon: Icon, label, active, ...props }) => {
   return (
@@ -31,6 +34,20 @@ const navigations = [
 ];
 
 const SideBar = () => {
+
+  const { userData, setUserData } = useGlobalUserContext()
+
+  const logout = async () => {
+    try {
+      const { data } = await AxiosInstance.post("/api/auth/logout/")
+      setUserData(null)
+      toast.info(data?.message)
+    } catch (error) {
+      console.log(error?.response?.data);
+      toast.error(error?.response?.data?.message)
+    }
+  }
+
   return (
     <aside className="w-54 h-screen z-50 bg-panel border-r border-outline-variant/40 flex flex-col px-4 shrink-0 sticky top-0">
 
@@ -73,8 +90,8 @@ const SideBar = () => {
           hover:border-outline-variant/30 cursor-pointer transition-all">
           <div className="relative shrink-0">
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80"
-              alt="Alex Chen"
+              src={userData?.avatar_url ? userData?.avatar_url : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=200"}
+              alt="profile photo"
               className="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container"
             />
             {/* Online Indicator[cite: 1] */}
@@ -83,7 +100,7 @@ const SideBar = () => {
 
           <div className="flex-1">
             <p className="text-label-md text-text-main font-bold truncate leading-tight">
-              Alex Chen
+              {userData ? userData?.full_name : "User"}
             </p>
           </div>
         </div>
@@ -98,7 +115,7 @@ const SideBar = () => {
               <NavItem icon={FaCog} label="Settings" active={isActive} />
             )}
           </NavLink>
-          <NavItem icon={FaSignOutAlt} label="Logout" />
+          <NavItem onClick={logout} icon={FaSignOutAlt} label="Logout" />
         </nav>
       </div>
 

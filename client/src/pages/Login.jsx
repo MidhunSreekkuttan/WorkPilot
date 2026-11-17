@@ -19,6 +19,7 @@ import {
 } from "react-icons/fa";
 import { PrimaryBtn, SecondaryBtn } from "../configs/UseBtn";
 import useForm from "../coustom-hooks/UseForm";
+import { useGlobalUserContext } from "../context/GlobalUserContext";
 
 const avatars = [
     { initials: "SJ", gradient: "from-indigo-500 to-purple-600" },
@@ -74,6 +75,8 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const { isAuthenticated, setUserData } = useGlobalUserContext()
+
     const { values, handleChange } = useForm({
         fullName: "",
         email: "",
@@ -89,27 +92,26 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+
         const pageTitle = state === "login" ? "WorkPilot | Login" : "WorkPilot | Sign Up";
         document.title = pageTitle
-    }, [state])
+
+        if (isAuthenticated) return navigate('/dashboard', { replace: true })
+
+    }, [state, isAuthenticated])
 
     const handleGoogleSuccess = async (tokenResponse) => {
         setAuthError("")
         setIsGoogleLoading(true)
 
         try {
-            const response = await AxiosInstance.post('/api/auth/google/', {
+            const { data } = await AxiosInstance.post('/api/auth/google/', {
                 access_token: tokenResponse.access_token,
             })
 
-            const data = response.data
+            setUserData(data?.user)
 
-            // 3. Match the keys returned by Django (access, refresh, user)
-            localStorage.setItem("access_token", data.access);
-            localStorage.setItem("refresh_token", data.refresh);
-            localStorage.setItem("user", JSON.stringify(data.user));
-
-            navigate("/dashboard");
+            navigate("/dashboard", { replace: true });
 
         } catch (err) {
             // 5. Extract DRF validation errors from err.response?.data
@@ -187,11 +189,9 @@ const Login = () => {
                     password: values.password
                 })
 
-                localStorage.setItem("access_token", data.access);
-                localStorage.setItem("refresh_token", data.refresh);
-                localStorage.setItem("user", JSON.stringify(data))
+                setUserData(data?.user)
 
-                toast.success("Login successful!");
+                toast.success(data?.message);
 
                 navigate("/dashboard", { replace: true });
 

@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-e=q+4aw#4+jidqb_+b_x8ueow4)0^g-+t_b07v_%79f6zguswi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID", "")
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
     
     # custom apps
     'accounts',
@@ -71,7 +72,7 @@ AUTH_USER_MODEL = 'accounts.User'
 REST_FRAMEWORK = {
     
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "accounts.authentication.CookieJWTAuthentication",
     ],
 
     "DEFAULT_PERMISSION_CLASSES": [
@@ -137,6 +138,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
