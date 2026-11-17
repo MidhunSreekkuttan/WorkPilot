@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -14,7 +16,27 @@ from .serializers import (
     AuthUserSerializer
 )
 
-# Create your views here.
+# cookie helper
+def set_auth_cookies(response, access_token, refresh_token):
+    response.set_cookie(
+        key='access_token',
+        value=access_token,
+        httponly=True,
+        secure=settings.DEBUG is False,
+        samesite='Lax',
+        max_age=3600
+    )
+    response.set_cookie(
+        key='refresh_token',
+        value=refresh_token,
+        httponly=True,
+        secure=settings.DEBUG is False,
+        samesite='Lax',
+        max_age=86400 * 7
+    )
+    
+    return response
+    
 class SignupView(APIView):
     permission_classes = [AllowAny]
     
@@ -26,14 +48,9 @@ class SignupView(APIView):
         # Create user.
         user = serializer.save()
         
-        # Generate JWT tokens.
-        refresh = RefreshToken.for_user(user)
-        
         return Response(
             {
                 "message": "Account created successfully.",
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
                 "user": UserSerializer(user).data
             },
             status=status.HTTP_201_CREATED
@@ -43,6 +60,20 @@ class LoginView(TokenObtainPairView):
     
     serializer_class = LoginSerializer
     permission_classes = [AllowAny]
+    
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response.status_code == 200:
+            access = response.data.get('access')
+            refresh = response.data.get('refresh')
+            response = set_auth_cookies(response, access, refresh)
+            
+            response.data.pop("access", None)
+            response.data.pop("refresh", None)
+            
+            response.data["message"] = "Login Successfull"
+            
+        return response
     
 class GoogleLoginView(APIView):
     permission_classes=[AllowAny]
@@ -56,16 +87,16 @@ class GoogleLoginView(APIView):
         
         refresh = RefreshToken.for_user(user)
         
-        return Response(
+        response = Response(
             {
                "message": "Google authentication successful.",
-               "access": str(refresh.access_token),
-               "refresh": str(refresh),
                "user": UserSerializer(user).data,
                "is_new_user": created
             },
             status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
         )
+        
+        return set_auth_cookies(response, str(refresh.access_token), str(refresh))
         
 class AuthUser(APIView):
     permission_classes=[IsAuthenticated]

@@ -6,7 +6,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import ThemeContextProvider from './context/ThemeContext.jsx'
 import './index.css'
 import App from './App.jsx'
-import GlobalUserContextProvider from './context/GlobalUser.jsx'
 
 const googleId = import.meta.env.VITE_GOOGLE_CLIENT_ID || ""
 
@@ -16,9 +15,7 @@ createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <HelmetProvider>
           <ThemeContextProvider>
-            <GlobalUserContextProvider>
-              <App />
-            </GlobalUserContextProvider>
+            <App />
           </ThemeContextProvider>
         </HelmetProvider>
       </BrowserRouter>

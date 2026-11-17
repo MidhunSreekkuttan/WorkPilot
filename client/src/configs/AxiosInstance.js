@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const baseURL =
@@ -8,52 +7,15 @@ const baseURL =
 
 const AxiosInstance = axios.create({
     baseURL,
+    withCredentials: true, // CRITICAL: This tells the browser to accept/send cookies
     headers: {
         "Content-Type": "application/json",
     },
 });
 
-// ========================================
-// REQUEST INTERCEPTOR
-// Attach access token to every API request
-// ========================================
-
-AxiosInstance.interceptors.request.use(
-    (config) => {
-
-        const isAuthRequest = [
-            "/api/auth/token/",
-            "/api/auth/token/refresh/",
-            "/api/auth/signup/",
-            "/api/auth/google/",
-        ].some(endpoint => config.url?.includes(endpoint));
-
-        if (isAuthRequest) {
-            delete config.headers.Authorization;
-            return config;
-        }
-
-        const accessToken = localStorage.getItem("access_token");
-
-        if (accessToken) {
-            config.headers.Authorization = `Bearer ${accessToken}`;
-        } else {
-            delete config.headers.Authorization;
-        }
-
-        return config;
-    },
-    (error) => Promise.reject(error)
-);
-
-// ========================================
-// RESPONSE INTERCEPTOR
-// Refresh expired access token
-// ========================================
-
+// Keep your response interceptor for token refreshing, but change how it saves!
 AxiosInstance.interceptors.response.use(
     (response) => response,
-
     async (error) => {
         const originalRequest = error.config;
 
@@ -61,7 +23,6 @@ AxiosInstance.interceptors.response.use(
             return Promise.reject(error);
         }
 
-        // Do not refresh tokens for authentication endpoints.
         const authEndpoints = [
             "/api/auth/token/",
             "/api/auth/token/refresh/",
@@ -69,8 +30,8 @@ AxiosInstance.interceptors.response.use(
             "/api/auth/google/",
         ];
 
-        const isAuthEndpoint = authEndpoints.some(
-            (endpoint) => originalRequest.url?.includes(endpoint)
+        const isAuthEndpoint = authEndpoints.some((endpoint) =>
+            originalRequest.url?.includes(endpoint)
         );
 
         if (isAuthEndpoint || originalRequest._retry) {
@@ -79,50 +40,22 @@ AxiosInstance.interceptors.response.use(
 
         originalRequest._retry = true;
 
-        const refreshToken = localStorage.getItem("refresh_token");
-
-        if (!refreshToken) {
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("refresh_token");
-            localStorage.removeItem("user");
-
-            window.location.href = "/login";
-
-            return Promise.reject(error);
-        }
-
         try {
-            const { data } = await axios.post(
+            // Note: Since we use cookies, we don't need to pass the refresh token manually.
+            // The browser sends the refresh_token cookie automatically to this endpoint.
+            await axios.post(
                 `${baseURL}/api/auth/token/refresh/`,
-                {
-                    refresh: refreshToken,
-                }
+                {},
+                { withCredentials: true }
             );
 
-            // Store the new access token.
-            localStorage.setItem("access_token", data.access);
-
-            // Store rotated refresh token if provided.
-            if (data.refresh) {
-                localStorage.setItem("refresh_token", data.refresh);
-            }
-
-            // Retry original request with new access token.
-            originalRequest.headers = {
-                ...originalRequest.headers,
-                Authorization: `Bearer ${data.access}`,
-            };
-
+            // Retry original request (browser will automatically use the new access_token cookie)
             return AxiosInstance(originalRequest);
 
         } catch (refreshError) {
-
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("refresh_token");
+            // If refresh fails, log them out
             localStorage.removeItem("user");
-
             window.location.href = "/login";
-
             return Promise.reject(refreshError);
         }
     }

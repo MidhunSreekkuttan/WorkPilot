@@ -93,9 +93,6 @@ const Login = () => {
         const pageTitle = state === "login" ? "WorkPilot | Login" : "WorkPilot | Sign Up";
         document.title = pageTitle
 
-        const accessToken = localStorage.getItem("access_token")
-        if (accessToken) navigate("/dashboard", { replace: true })
-
     }, [state])
 
     const handleGoogleSuccess = async (tokenResponse) => {
@@ -103,16 +100,9 @@ const Login = () => {
         setIsGoogleLoading(true)
 
         try {
-            const response = await AxiosInstance.post('/api/auth/google/', {
+            await AxiosInstance.post('/api/auth/google/', {
                 access_token: tokenResponse.access_token,
             })
-
-            const data = response.data
-
-            // 3. Match the keys returned by Django (access, refresh, user)
-            localStorage.setItem("access_token", data.access);
-            localStorage.setItem("refresh_token", data.refresh);
-            localStorage.setItem("user", JSON.stringify(data.user));
 
             navigate("/dashboard");
 
@@ -192,11 +182,7 @@ const Login = () => {
                     password: values.password
                 })
 
-                localStorage.setItem("access_token", data.access);
-                localStorage.setItem("refresh_token", data.refresh);
-                localStorage.setItem("user", JSON.stringify(data))
-
-                toast.success("Login successful!");
+                toast.success(data?.message);
 
                 navigate("/dashboard", { replace: true });
 
