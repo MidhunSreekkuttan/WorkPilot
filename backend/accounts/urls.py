@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SignupView, LoginView, GoogleLoginView, AuthUser, CookieTokenRefreshView
+from .views import SignupView, LoginView, GoogleLoginView, AuthUser, CookieTokenRefreshView, Logout
 
 urlpatterns = [
     # Create account
@@ -16,5 +16,7 @@ urlpatterns = [
     path("token/refresh/", CookieTokenRefreshView.as_view(), name="token-refresh"),
     
     # Auth user
-    path("authUser/", AuthUser.as_view(), name="auth-user")
+    path("authUser/", AuthUser.as_view(), name="auth-user"),
+    
+    path("logout/", Logout, name="logout")
 ]

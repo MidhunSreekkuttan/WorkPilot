@@ -1,5 +1,6 @@
 from django.conf import settings
 
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -140,3 +141,24 @@ class AuthUser(APIView):
             serializer.data,
             status=status.HTTP_200_OK
         )
+
+@api_view(["POST"])
+def Logout(request):
+    response = Response(
+        {"message": "Logout successful"},
+        status=status.HTTP_200_OK
+    )
+    
+    response.delete_cookie(
+        "access_token",
+        path="/",
+        samesite="Lax"
+    )
+    
+    response.delete_cookie(
+        "refresh_token",
+        path="/",
+        samesite="Lax"
+    )
+    
+    return response
