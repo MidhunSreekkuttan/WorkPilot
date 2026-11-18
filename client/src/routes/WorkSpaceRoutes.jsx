@@ -3,6 +3,7 @@ import { lazy } from "react"
 
 import WorkSpaceLayout from "../layouts/WorkSpaceLayout"
 import ProtectedRoute from "../workspace/shared/components/ProtectedRoute"
+import LazyLoad from "../configs/LazyLoad"
 
 {/* Shared pages */ }
 const WorkspaceOverview = lazy(() => import("../workspace/shared/pages/WorkspaceOverview"))
@@ -24,28 +25,64 @@ const WorkSpaceRoutes = () => {
         <>
             <Route path="/work-space" element={<WorkSpaceLayout />}>
                 {/* Shared pages */}
-                <Route index element={<WorkspaceOverview />} />
+                <Route index element={
+                    <LazyLoad>
+                        <WorkspaceOverview />
+                    </LazyLoad>
+                } />
 
                 <Route path=":workspaceId">
 
-                    <Route index element={<Workspace />} />
-                    <Route path="projects" element={<WorkspaceProjects />} />
-                    <Route path="projects/:projectId" element={<ProjectDetails />} />
-                    <Route path="files" element={<WorkspaceFiles />} />
+                    <Route index element={
+                        <LazyLoad>
+                            <Workspace />
+                        </LazyLoad>
+                    } />
+                    <Route path="projects" element={
+                        <LazyLoad>
+                            <WorkspaceProjects />
+                        </LazyLoad>
+                    } />
+                    <Route path="projects/:projectId" element={
+                        <LazyLoad>
+                            <ProjectDetails />
+                        </LazyLoad>
+                    } />
+                    <Route path="files" element={
+                        <LazyLoad>
+                            <WorkspaceFiles />
+                        </LazyLoad>
+                    } />
 
                     {/* Manager-only pages */}
                     <Route element={<ProtectedRoute allowedRoles={["manager"]} />}>
 
-                        <Route path="tasks" element={<ManageTasks />} />
-                        <Route path="members" element={<ManageMembers />} />
-                        <Route path="settings" element={<WorkspaceSettings />} />
+                        <Route path="tasks" element={
+                            <LazyLoad>
+                                <ManageTasks />
+                            </LazyLoad>
+                        } />
+                        <Route path="members" element={
+                            <LazyLoad>
+                                <ManageMembers />
+                            </LazyLoad>
+                        } />
+                        <Route path="settings" element={
+                            <LazyLoad>
+                                <WorkspaceSettings />
+                            </LazyLoad>
+                        } />
 
                     </Route>
 
                     {/* Member-only pages */}
                     <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
 
-                        <Route path="my-tasks" element={<MyTasks />} />
+                        <Route path="my-tasks" element={
+                            <LazyLoad>
+                                <MyTasks />
+                            </LazyLoad>
+                        } />
 
                     </Route>
 
