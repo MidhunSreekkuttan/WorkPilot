@@ -19,13 +19,17 @@ from .serializers import (
 
 # cookie helper
 def set_auth_cookies(response, access_token, refresh_token):
+    
+    access_lifetime = settings.SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"]
+    refresh_lifetime = settings.SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"]
+    
     response.set_cookie(
         key='access_token',
         value=access_token,
         httponly=True,
         secure=settings.DEBUG is False,
         samesite='Lax',
-        max_age=3600
+        max_age=int(access_lifetime.total_seconds())
     )
     response.set_cookie(
         key='refresh_token',
@@ -33,13 +37,13 @@ def set_auth_cookies(response, access_token, refresh_token):
         httponly=True,
         secure=settings.DEBUG is False,
         samesite='Lax',
-        max_age=86400 * 7
+        max_age=int(refresh_lifetime.total_seconds())
     )
     
     return response
 
 class CookieTokenRefreshView(TokenRefreshView):
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         refresh_token = request.COOKIES.get("refresh_token")
         if not refresh_token:
             return Response(

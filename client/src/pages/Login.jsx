@@ -105,7 +105,7 @@ const Login = () => {
         setIsGoogleLoading(true)
 
         try {
-            const { data } = await AxiosInstance.post('/api/auth/google/', {
+            const { data } = await AxiosInstance.post('/auth/google/', {
                 access_token: tokenResponse.access_token,
             })
 
@@ -184,7 +184,7 @@ const Login = () => {
             try {
                 setLoading(true)
 
-                const { data } = await AxiosInstance.post("/api/auth/token/", {
+                const { data } = await AxiosInstance.post("/auth/token/", {
                     email: values.email,
                     password: values.password
                 })
@@ -216,7 +216,7 @@ const Login = () => {
             try {
                 setLoading(true)
 
-                const { data } = await AxiosInstance.post("/api/auth/signup/", {
+                const { data } = await AxiosInstance.post("/auth/signup/", {
                     full_name: values.fullName,
                     email: values.email,
                     password: values.password
